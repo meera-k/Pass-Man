@@ -9,9 +9,9 @@ public class Food {
     private int pointVal; //how many points the food item is worth
     private boolean eaten; //whether or not it has been eaten (will affect its visibility)
 
-    public Food(String s, int i) {
-        imagePath = s;
-        pointVal = i;
+    public Food(String imagePath, int pointVal) {
+        this.imagePath = imagePath;
+        this.pointVal = pointVal;
         eaten = false;
     }
     
