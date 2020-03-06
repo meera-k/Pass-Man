@@ -13,7 +13,7 @@ import java.awt.event.*;
 
 //UserPanel inherits from JPanel and uses the KeyListener and ActionListener interfaces
 
-public class UserPanel extends JPanel implements KeyListener, ActionListener {
+public class UserPanel extends JPanel implements KeyListener, ActionListener, JavaArcade {
 
     int points;
     private Student student; // active student
