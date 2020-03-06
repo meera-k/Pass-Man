@@ -171,7 +171,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         // therefore it is
         // static and its corresponding static method is called using the class name.
 
-        Charcter.setPanelWidth(getWidth()); // update static field so all Circle objects know current panel width
+        Character.setPanelWidth(getWidth()); // update static field so all Circle objects know current panel width
         enemy.move();
     }
 
