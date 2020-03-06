@@ -1,12 +1,4 @@
 
-/**
- * @(#)UserPanel.java
- * 
- *
- * 
- * @author Sydney Tran
- * @version 1.00 2018/3/6
- */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
