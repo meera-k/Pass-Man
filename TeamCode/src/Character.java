@@ -19,7 +19,7 @@ public abstract class Character {
         panelWidth = w;
     }
 
-    public abstract void draw(Graphics g);
+    public abstract void draw();
 
     // //needed if a mouse event is used (x, y represents mouse coordinates)
     // public boolean containsPoint(int x, int y){
