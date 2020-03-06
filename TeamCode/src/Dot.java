@@ -5,10 +5,11 @@ v1.0
 */
 
 public class Dot extends Food {
-    private String dotPath; //TODO: set this equal to its image path
-    
-    public Dot(int i) {
-        super(dotPath, i);
+    private static String dotPath; //TODO: set this equal to its image path
+    private static int pointVal = 10;
+
+    public Dot() {
+        super(dotPath, pointVal);
     }
 
     public void draw() {
