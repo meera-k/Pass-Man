@@ -1,14 +1,10 @@
-// this is the user panel - Sydney
 /**
  * @(#)UserPanel.java
- * Simplified version of the SpaceInvaders UserPanel to show motion.
- * The two enemy objects move methods are called every 50 ms in response to a timer.
- * repaint() is called in response to that timer.  This call causes paintComponent to
- * be called.  paintComponent redraws the panel.
+ * 
  *
- * The hero move method is called in response to the mouse events.
- * @author 
- * @version 1.00 2016/2/5
+ * 
+ * @author Sydney Tran
+ * @version 1.00 2018/3/6
  */
 import javax.swing.*;
 import java.awt.*;
