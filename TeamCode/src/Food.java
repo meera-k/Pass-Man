@@ -4,7 +4,7 @@ Sydney Tran, Meera Kumar, Emily Chen
 v1.0
 */
 
-public class Food {
+public abstract class Food {
     private String imagePath; //path to image for the food item
     private int pointVal; //how many points the food item is worth
     private boolean eaten; //whether or not it has been eaten (will affect its visibility)
@@ -32,4 +32,6 @@ public class Food {
         eaten = true;
         return pointVal;
     }
+
+    public abstract void draw();
 }

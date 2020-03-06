@@ -1,2 +1,2 @@
-public class HallMonitor {
+public class HallMonitor extends Character {
 }
