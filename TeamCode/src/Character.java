@@ -8,42 +8,38 @@ public abstract class Character {
     //setPanelWidth ?
 
    private int centerX, centerY, radius;
-   private Color color;
    private int direction, velocity;
-   private boolean filled;
    private static int panelWidth; //All enemies will share this information
   
    public Character(int x, int y, int r, Color c, int v){
       centerX = x;
       centerY = y;
       radius = r;
-      color = c;
       direction = 0;
       velocity = v;
-      filled = true;
    }
  public static void setPanelWidth(int w)
     {
     	panelWidth = w;
     }
    public void draw(Graphics g){
-      Color oldColor = g.getColor();
-      g.setColor(color);
-      // Translates circle's center to rectangle's origin for drawing.
-      if (filled)
-         g.fillOval(centerX - radius, centerY - radius, radius * 2, radius * 2);
-      else
-         g.drawOval(centerX - radius, centerY - radius, radius * 2, radius * 2);
-      g.setColor(oldColor);
+    //   Color oldColor = g.getColor();
+    //   g.setColor(color);
+    //   // Translates circle's center to rectangle's origin for drawing.
+    //   if (filled)
+    //      g.fillOval(centerX - radius, centerY - radius, radius * 2, radius * 2);
+    //   else
+    //      g.drawOval(centerX - radius, centerY - radius, radius * 2, radius * 2);
+    //   g.setColor(oldColor);
    }
 
-  //needed if a mouse event is used (x, y represents mouse coordinates)
-   public boolean containsPoint(int x, int y){
-      int xSquared = (x - centerX) * (x - centerX);
-      int ySquared = (y - centerY) * (y - centerY);
-      int radiusSquared = radius * radius;
-      return xSquared + ySquared - radiusSquared <= 0;
-   }
+//   //needed if a mouse event is used (x, y represents mouse coordinates)
+//    public boolean containsPoint(int x, int y){
+//       int xSquared = (x - centerX) * (x - centerX);
+//       int ySquared = (y - centerY) * (y - centerY);
+//       int radiusSquared = radius * radius;
+//       return xSquared + ySquared - radiusSquared <= 0;
+//    }
 
    public int getRadius(){
       return radius;
@@ -125,9 +121,9 @@ public abstract class Character {
       
       
    }  
-   public void moveMouse(int dx, int dy)
-   {
-     centerX += dx;
-     centerY += dy;
-   } 
+//    public void moveMouse(int dx, int dy)
+//    {
+//      centerX += dx;
+//      centerY += dy;
+//    } 
 }
