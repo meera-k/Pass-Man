@@ -91,14 +91,12 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener {
             case KeyEvent.VK_SPACE:// actions performed if enter key is pressed
 
                 break;
-            case KeyEvent.VK_I:
-                enemy.setVelocity(enemy.getVelocity() + 10);
-                enemySlow.setVelocity(enemySlow.getVelocity() + 10);
-                break;
-            case KeyEvent.VK_D:
-                enemy.setVelocity(enemy.getVelocity() - 10);
-                enemySlow.setVelocity(enemySlow.getVelocity() - 10);
-                break;
+            // case KeyEvent.VK_I:
+            //     enemy.setVelocity(enemy.getVelocity() + 10);
+            //     break;
+            // case KeyEvent.VK_D:
+            //     enemy.setVelocity(enemy.getVelocity() - 10);
+            //     break;
 
             case KeyEvent.VK_LEFT:// actions performed if enter key is pressed
 
@@ -112,12 +110,12 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener {
                 break;
             case KeyEvent.VK_UP:// actions performed if enter key is pressed
 
-                student.moveNorth();
+                student.moveUp();
 
                 break;
             case KeyEvent.VK_DOWN:// actions performed if enter key is pressed
 
-                student.moveSouth();
+                student.moveDown();
 
                 break;
 
@@ -142,7 +140,6 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener {
 
         // Draw enemies
         enemy.draw(g);
-        enemySlow.draw(g);
 
         g.setColor(Color.white);
         g.drawString("Points: " + points, 20, getHeight() - 30);
@@ -163,7 +160,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener {
         // Because we are implementing ActionListener, we must define actionPerformed
         public void actionPerformed(ActionEvent e) {
 
-            points--; // Every 3 seconds, lose a point - motivate to win faster
+            //points--; // Every 3 seconds, lose a point - motivate to win faster
 
         }
     }
@@ -174,43 +171,42 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener {
         // therefore it is
         // static and its corresponding static method is called using the class name.
 
-        Circle.setPanelWidth(getWidth()); // update static field so all Circle objects know current panel width
+        Charcter.setPanelWidth(getWidth()); // update static field so all Circle objects know current panel width
         enemy.move();
-        enemySlow.move();
     }
 
     private class PanelListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
-            x = e.getX();
-            y = e.getY();
-            System.out.println("x : " + x + " y: " + y);
-            if (student.containsPoint(x, y)) {
-                System.out.println("true");
-                selectedCircle = student;
-            }
+            // x = e.getX();
+            // y = e.getY();
+            // System.out.println("x : " + x + " y: " + y);
+            // if (student.containsPoint(x, y)) {
+            //     System.out.println("true");
+            //     selectedCircle = student;
+            // }
         }
 
         public void mouseReleased(MouseEvent e) {
-            x = e.getX(); // what happens if these are removed?
-            y = e.getY();
-            selectedCircle = null;
+            // x = e.getX(); // what happens if these are removed?
+            // y = e.getY();
+            // selectedCircle = null;
         }
 
     }
 
     private class PanelMotionListener extends MouseMotionAdapter {
         public void mouseDragged(MouseEvent e) {
-            int newX = e.getX();
-            int newY = e.getY();
-            int dx = newX - x;
-            int dy = newY - y;
-            if (selectedCircle != null) {
-                selectedCircle.moveMouse(dx, dy);
-                System.out.println("moving");
-            }
-            x = newX;
-            y = newY;
-            // repaint();
+            // int newX = e.getX();
+            // int newY = e.getY();
+            // int dx = newX - x;
+            // int dy = newY - y;
+            // if (selectedCircle != null) {
+            //     selectedCircle.moveMouse(dx, dy);
+            //     System.out.println("moving");
+            // }
+            // x = newX;
+            // y = newY;
+            // // repaint();
         }
     }
 }
