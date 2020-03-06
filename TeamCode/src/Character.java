@@ -7,15 +7,15 @@ public abstract class Character {
     // abstract draw
     // setPanelWidth ?
 
-    private int centerX, centerY, height, width;
+    private int centerX, centerY, width, height;
     private int direction, velocity;
     private static int panelWidth; // All enemies will share this information
 
-    public Character(int x, int y, int h, int w, int v) {
+    public Character(int x, int y, int w, int h, int v) {
         centerX = x;
         centerY = y;
-        height = h;
         width = w;
+        height = h;
         direction = 0;
         velocity = v;
     }
@@ -43,12 +43,12 @@ public abstract class Character {
     // return xSquared + ySquared - radiusSquared <= 0;
     // }
 
-    public int getHeight() {
-        return height;
-    }
-
     public int getWidth() {
         return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public int getX() {
@@ -100,11 +100,11 @@ public abstract class Character {
     public void move() {
         int xVal = getX();
 
-        if (xVal + radius > panelWidth) { // include getWidth() so we bounce off on the right edge
+        if (xVal + width > panelWidth) { // include getWidth() so we bounce off on the right edge
 
             direction = 0; // negative;
             xVal -= velocity;
-        } else if (xVal - radius < 0) {
+        } else if (xVal - width < 0) {
 
             xVal += velocity;
             direction = 1; // positive
