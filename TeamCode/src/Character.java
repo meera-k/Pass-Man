@@ -2,11 +2,6 @@ import java.awt.*;
 
 public abstract class Character {
 
-    // height
-    // width
-    // abstract draw
-    // setPanelWidth ?
-
     private int centerX, centerY, width, height;
     private int direction, velocity;
     private static int panelWidth; // All enemies will share this information
@@ -24,16 +19,7 @@ public abstract class Character {
         panelWidth = w;
     }
 
-    public void draw(Graphics g) {
-        // Color oldColor = g.getColor();
-        // g.setColor(color);
-        // // Translates circle's center to rectangle's origin for drawing.
-        // if (filled)
-        // g.fillOval(centerX - radius, centerY - radius, radius * 2, radius * 2);
-        // else
-        // g.drawOval(centerX - radius, centerY - radius, radius * 2, radius * 2);
-        // g.setColor(oldColor);
-    }
+    public abstract void draw(Graphics g);
 
     // //needed if a mouse event is used (x, y represents mouse coordinates)
     // public boolean containsPoint(int x, int y){
@@ -67,11 +53,11 @@ public abstract class Character {
         centerX += 2;
     }
 
-    public void moveNorth() {
+    public void moveUp() {
         centerY -= 2;
     }
 
-    public void moveSouth() {
+    public void moveDown() {
         centerY += 2;
     }
 
