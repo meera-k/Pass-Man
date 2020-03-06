@@ -1,6 +1,7 @@
 public class Bagel extends Snack {
-    private final int POINT_VAL = 100;
+    private static final int POINT_VAL = 100;
+    private static final String PATH = "Pass-Man Drawings/bagel.png";
     public Bagel() {
-        super("Pass-Man Drawings/bagel.png", 100);
+        super(PATH, POINT_VAL);
     }
 }
