@@ -4,5 +4,5 @@ Sydney Tran, Meera Kumar, Emily Chen
 v1.0
 */
 
-public class Dot {
+public class Dot extends Food {
 }
