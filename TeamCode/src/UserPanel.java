@@ -136,10 +136,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         super.paintComponent(g); // a call to JPanel's paintComponent
 
         // Draw heroes
-        student.draw(g);
+        student.draw();
 
         // Draw enemies
-        enemy.draw(g);
+        enemy.draw();
 
         g.setColor(Color.white);
         g.drawString("Points: " + points, 20, getHeight() - 30);
