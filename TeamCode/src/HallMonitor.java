@@ -16,4 +16,23 @@ public class HallMonitor extends Character {
     public void draw(Graphics g) {
         g.drawImage(scaledIcon.getImage(), getX(), getY(), null);
     }
+
+    public void move(int charX, int charY) {
+        int diffX = getX() - charX;
+        int diffY = getY() - charY;
+
+        if(Math.abs(diffX) > Math.abs(diffY)) { // If HallMonitor is further away in the x-direction than the y-direction
+            if(diffX > 0) { // HallMonitor is further right than student
+                moveLeft();
+            } else {
+                moveRight();
+            }
+        } else {
+            if(diffY > 0) { // HallMonitor is further down than student
+                moveUp();
+            } else {
+                moveDown();
+            }
+        }
+    }
 }

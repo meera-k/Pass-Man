@@ -234,7 +234,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         Character.setPanelWidth(getWidth()); // update static field so all Circle objects know current panel width
         Character.setPanelHeight(getHeight());
-        enemy.move();
+        enemy.move(student.getX(), student.getY());
         switch(direction) {
             case LEFT:
                 student.moveLeft();
