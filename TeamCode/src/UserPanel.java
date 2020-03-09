@@ -11,7 +11,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     private javax.swing.Timer timer; // controls how often we updated the x, y pos of enemies and how often we
                                      // repaint
-    private javax.swing.Timer pointsTimer; // controls how often our points value change
+    //private javax.swing.Timer pointsTimer; // controls how often our points value change
 
     private HallMonitor enemy;
 
@@ -40,9 +40,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         // Timer invoked every 3 seconds, just a demo of using 2 timers - currently
         // points value decrease
-        pointsTimer = new javax.swing.Timer(3000, new PointsListener());
-        addMouseListener(new PanelListener());
-        addMouseMotionListener(new PanelMotionListener());
+        // pointsTimer = new javax.swing.Timer(3000, new PointsListener());
+        // addMouseListener(new PanelListener());
+        // addMouseMotionListener(new PanelMotionListener());
 
         addKeyListener(this);// used for key controls
 
@@ -58,15 +58,14 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
      * your game is in a "paused" state or "stopped" or "unstarted" */
 
     public boolean running() {
-        //TODO: Implement
-        return true;
+        return start;
     }
 
     /* This method should start your game, it should also set a global boolean value so that your running method
      * can return the appropriate value */
 
     public void startGame() {
-        //TODO: Implement
+        start = true;
     }
 
     /*This method should return the name of your game */
@@ -78,7 +77,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
      *the game is not running, this value will be returned by running method */
 
     public void pauseGame() {
-        //TODO: Implement
+        timer.stop();
+        start = false;
     }
 
     /* This method should return your instructions */
@@ -102,19 +102,22 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     /* This method should stop the timers, reset the score, and set a running boolean value to false */
     public void stopGame() {
         //TODO: Implement
+        timer.stop();
+        points = 0;
+        start = false;
     }
 
     /* This method shoud return the current players number of points */
 
     public int getPoints() { //add to spec
-        //TODO: Implement
-        return 1;
+        return points;
     }
 
     /* This method provides access to GameStats display for UserPanel to pass information to update score
-    GameStats is created in Arcade, a reference should be passed to UserPanel (main panel) to update poionts */
+    GameStats is created in Arcade, a reference should be passed to UserPanel (main panel) to update points */
     public void setDisplay(GameStats d) {
         //TODO: Implement
+        d.update(points);
     }
 
     public void actionPerformed(ActionEvent e) { // invoked when timer expires every 50ms
@@ -137,7 +140,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
             case KeyEvent.VK_ENTER:// actions performed if enter key is pressed
                 timer.start();
-                pointsTimer.start();
+                //pointsTimer.start();
 
                 start = true;
 
