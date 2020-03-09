@@ -1,16 +1,9 @@
-import java.awt.*;
-
-public abstract class Character {
-
-    private int centerX, centerY, width, height;
+public class Character extends Drawable {
     private int direction, velocity;
     private static int panelWidth; // All enemies will share this information
 
     public Character(int x, int y, int w, int h, int v) {
-        centerX = x;
-        centerY = y;
-        width = w;
-        height = h;
+        super(x, y, w, h);
         direction = 0;
         velocity = v;
     }
@@ -19,46 +12,20 @@ public abstract class Character {
         panelWidth = w;
     }
 
-    public abstract void draw(Graphics g);
-
-    // //needed if a mouse event is used (x, y represents mouse coordinates)
-    // public boolean containsPoint(int x, int y){
-    // int xSquared = (x - centerX) * (x - centerX);
-    // int ySquared = (y - centerY) * (y - centerY);
-    // int radiusSquared = radius * radius;
-    // return xSquared + ySquared - radiusSquared <= 0;
-    // }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getX() {
-        return centerX;
-    }
-
-    public int getY() {
-        return centerY;
-    }
-
     public void moveLeft() {
-        centerX -= 2;
+        changeX(-2);
     }
 
     public void moveRight() {
-        centerX += 2;
+        changeX(2);
     }
 
     public void moveUp() {
-        centerY -= 2;
+        changeY(-2);
     }
 
     public void moveDown() {
-        centerY += 2;
+        changeY(2);
     }
 
     public int getDirection() {
@@ -86,11 +53,11 @@ public abstract class Character {
     public void move() {
         int xVal = getX();
 
-        if (xVal + width > panelWidth) { // include getWidth() so we bounce off on the right edge
+        if (xVal + getWidth() > panelWidth) { // include getWidth() so we bounce off on the right edge
 
             direction = 0; // negative;
             xVal -= velocity;
-        } else if (xVal - width < 0) {
+        } else if (xVal - getWidth() < 0) {
 
             xVal += velocity;
             direction = 1; // positive
@@ -100,12 +67,11 @@ public abstract class Character {
             else
                 xVal -= velocity;
         }
-        centerX = xVal;
+        setX(xVal);
     }
 
     public void move(int x, int w) {// moves side to side
-        centerX = x - w; // setX(x - w);
-
+        setX(x - w);
     }
     // public void moveMouse(int dx, int dy)
     // {

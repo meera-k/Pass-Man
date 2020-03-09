@@ -4,12 +4,16 @@ Sydney Tran, Meera Kumar, Emily Chen
 v1.0
 */
 
-public abstract class Food {
+import java.awt.*;
+import javax.swing.*;
+
+public class Food extends Drawable {
     private String imagePath; //path to image for the food item
     private int pointVal; //how many points the food item is worth
     private boolean eaten; //whether or not it has been eaten (will affect its visibility)
 
-    public Food(String imagePath, int pointVal) {
+    public Food(int x, int y, int w, int h, String imagePath, int pointVal) {
+        super(x, y, w, h);
         this.imagePath = imagePath;
         this.pointVal = pointVal;
         eaten = false;
@@ -32,6 +36,4 @@ public abstract class Food {
         eaten = true;
         return pointVal;
     }
-
-    public abstract void draw();
 }

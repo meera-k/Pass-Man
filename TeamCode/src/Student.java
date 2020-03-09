@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 
 public class Student extends Character {
@@ -8,6 +7,6 @@ public class Student extends Character {
     }
 
     public void draw(Graphics g) {
-        g.drawImage(new ImageIcon(imagePath).getImage(),getX(),getY(),null);
+        super.draw(g, imagePath);
     }
 }
