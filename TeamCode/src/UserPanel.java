@@ -14,6 +14,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     //private javax.swing.Timer pointsTimer; // controls how often our points value change
 
     private HallMonitor enemy;
+    
+    private Map map;
 
     private boolean start = false;
     private int x, y;
@@ -30,6 +32,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         playerWidth = width / 27;
 
         enemy = new HallMonitor(1,1,1,1,1);
+
+        map = new Map(width, height);
 
         points = 0;
 
@@ -199,6 +203,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         // Draw enemies
         enemy.draw(g);
+
+        map.draw(g);
 
         g.setColor(Color.white);
         g.drawString("Points: " + points, 20, getHeight() - 30);
