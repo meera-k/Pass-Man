@@ -6,7 +6,6 @@ import java.awt.event.*;
 //UserPanel inherits from JPanel and uses the KeyListener and ActionListener interfaces
 
 public class UserPanel extends JPanel implements KeyListener, ActionListener, JavaArcade {
-
     int points;
     private Student student; // active student
 
@@ -30,11 +29,11 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         playerHeight = height / 22;
         playerWidth = width / 27;
 
-        enemy = new HallMonitor();
+        enemy = new HallMonitor(1,1,1,1,1);
 
         points = 0;
 
-        student = new Student();
+        student = new Student(1,1,1,1,1);
 
         // Status check every 50 milliseconds
         timer = new javax.swing.Timer(50, this);
@@ -53,6 +52,69 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         setPreferredSize(new Dimension(width, height));
 
+    }
+
+    /* This method should return true if your game is in a "start" state, it should return false if
+     * your game is in a "paused" state or "stopped" or "unstarted" */
+
+    public boolean running() {
+        //TODO: Implement
+        return true;
+    }
+
+    /* This method should start your game, it should also set a global boolean value so that your running method
+     * can return the appropriate value */
+
+    public void startGame() {
+        //TODO: Implement
+    }
+
+    /*This method should return the name of your game */
+    public String getGameName() {
+        return "Pass-Man";
+    }
+
+    /* This method should stop your timers but save your score, it should set a boolean value to indicate
+     *the game is not running, this value will be returned by running method */
+
+    public void pauseGame() {
+        //TODO: Implement
+    }
+
+    /* This method should return your instructions */
+    public String getInstructions() {
+        //TODO: Implement
+        return "";
+    }
+
+    /* This method should return the author(s) of the game */
+    public String getCredits() {
+        //TODO: Implement
+        return "";
+    }
+
+    /* This method should return the highest score played for this game */
+    public String getHighScore() {
+        //TODO: Implement
+        return "";
+    }
+
+    /* This method should stop the timers, reset the score, and set a running boolean value to false */
+    public void stopGame() {
+        //TODO: Implement
+    }
+
+    /* This method shoud return the current players number of points */
+
+    public int getPoints() { //add to spec
+        //TODO: Implement
+        return 1;
+    }
+
+    /* This method provides access to GameStats display for UserPanel to pass information to update score
+    GameStats is created in Arcade, a reference should be passed to UserPanel (main panel) to update poionts */
+    public void setDisplay(GameStats d) {
+        //TODO: Implement
     }
 
     public void actionPerformed(ActionEvent e) { // invoked when timer expires every 50ms
@@ -128,10 +190,12 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         super.paintComponent(g); // a call to JPanel's paintComponent
 
         // Draw heroes
-        student.draw();
+        student.draw(g);
+        ImageIcon bagel = new ImageIcon("graphics/bagel.png");
+        g.drawImage(bagel.getImage(),100,100,null);
 
         // Draw enemies
-        enemy.draw();
+        enemy.draw(g);
 
         g.setColor(Color.white);
         g.drawString("Points: " + points, 20, getHeight() - 30);

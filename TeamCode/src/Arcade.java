@@ -1,5 +1,4 @@
-import java.awt.Container;
-import java.awt.BorderLayout;
+import java.awt.*;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.border.EmptyBorder;
@@ -28,6 +27,8 @@ public class Arcade extends JFrame
 
         Container c = getContentPane();
         c.add(panel, BorderLayout.CENTER);
+
+        setResizable(false);
     }
 
     public static void main(String[] args)
