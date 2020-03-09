@@ -18,6 +18,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     private boolean start = false;
     private int x, y;
 
+    private Direction direction;
+
     public UserPanel(int width, int height) {
 
         Color backColor = Color.black;
@@ -29,11 +31,11 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         playerHeight = height / 22;
         playerWidth = width / 27;
 
-        enemy = new HallMonitor(1,1,1,1,1);
+        enemy = new HallMonitor(1,1,2);
 
         points = 0;
 
-        student = new Student(1,1,1,1,1);
+        student = new Student(100,1,3);
 
         // Status check every 50 milliseconds
         timer = new javax.swing.Timer(50, this);
@@ -51,6 +53,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         setBackground(backColor);
 
         setPreferredSize(new Dimension(width, height));
+
+        direction = Direction.NONE;
 
     }
 
@@ -156,24 +160,16 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
             //     break;
 
             case KeyEvent.VK_LEFT:// actions performed if enter key is pressed
-
-                student.moveLeft();
-
+                direction = Direction.LEFT;
                 break;
             case KeyEvent.VK_RIGHT:// actions performed if enter key is pressed
-
-                student.moveRight();
-
+                direction = Direction.RIGHT;
                 break;
             case KeyEvent.VK_UP:// actions performed if enter key is pressed
-
-                student.moveUp();
-
+                direction = Direction.UP;
                 break;
             case KeyEvent.VK_DOWN:// actions performed if enter key is pressed
-
-                student.moveDown();
-
+                direction = Direction.DOWN;
                 break;
 
             case KeyEvent.VK_ESCAPE:// actions performed if escape key is pressed
@@ -231,7 +227,22 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         // static and its corresponding static method is called using the class name.
 
         Character.setPanelWidth(getWidth()); // update static field so all Circle objects know current panel width
+        Character.setPanelHeight(getHeight());
         enemy.move();
+        switch(direction) {
+            case LEFT:
+                student.moveLeft();
+                break;
+            case RIGHT:
+                student.moveRight();
+                break;
+            case UP:
+                student.moveUp();
+                break;
+            case DOWN:
+                student.moveDown();
+                break;
+        }
     }
 
     private class PanelListener extends MouseAdapter {

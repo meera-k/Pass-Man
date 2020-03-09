@@ -19,9 +19,9 @@ public abstract class Drawable {
     }
 
     public void draw(Graphics g, String imagePath) {
-        g.drawImage(new ImageIcon(imagePath).getImage(),getX(),getY(),null);
+        g.drawImage(new ImageIcon(imagePath).getImage(), getX(), getY(), null);
     }
-    
+
     //needed if a mouse event is used (x, y represents mouse coordinates)
     //TODO: use this maybe?(?)
     // public boolean containsPoint(int x, int y){
@@ -31,19 +31,35 @@ public abstract class Drawable {
     //     return xSquared + ySquared - radiusSquared <= 0;
     // }
 
-    public int getWidth() { return width; }
+    public int getWidth() {
+        return width;
+    }
 
-    public int getHeight() { return height; }
+    public int getHeight() {
+        return height;
+    }
 
-    public int getX() { return centerX; }
+    public int getX() {
+        return centerX;
+    }
 
-    public void changeX(int i) { centerX += i; }
+    public void changeX(int i) {
+        centerX += i;
+    }
 
-    public void setX(int i) { centerX = i; }
+    public void setX(int i) {
+        centerX = i;
+    }
 
-    public int getY() { return centerY; }
+    public int getY() {
+        return centerY;
+    }
 
-    public void changeY(int i) { centerY += i; }
+    public void changeY(int i) {
+        centerY += i;
+    }
 
-    public void setY(int i) { centerY = i; }
+    public void setY(int i) {
+        centerY = i;
+    }
 }

@@ -4,11 +4,22 @@ Sydney Tran, Meera Kumar, Emily Chen
 v1.0
 */
 
-public class Dot extends Food {
-    private static String dotPath; //TODO: set this equal to its image path
-    private static int pointVal = 10;
+import javax.swing.*;
+import java.awt.*;
 
-    public Dot(int x, int y, int w, int h) {
-        super(x, y, w, h, dotPath, pointVal);
+public class Dot extends Food {
+    // Image stuff
+    private static String imagePath = "graphics/dot.png";
+    private static int pointVal = 10;
+    private ImageIcon img = new ImageIcon(imagePath);
+    private Image scaled = scaleImage(img.getImage(), 100, 100);
+    private ImageIcon scaledIcon = new ImageIcon(scaled);
+
+    public Dot(int x, int y) {
+        super(x, y, 15, 15, imagePath, pointVal);
+    }
+
+    public void draw(Graphics g) {
+        g.drawImage(scaledIcon.getImage(), getX(), getY(), null);
     }
 }

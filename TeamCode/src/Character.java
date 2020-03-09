@@ -1,9 +1,10 @@
 public class Character extends Drawable {
     private int direction, velocity;
     private static int panelWidth; // All enemies will share this information
+    private static int panelHeight;
 
-    public Character(int x, int y, int w, int h, int v) {
-        super(x, y, w, h);
+    public Character(int x, int y, int v) {
+        super(x, y, 39, 66);
         direction = 0;
         velocity = v;
     }
@@ -11,21 +12,44 @@ public class Character extends Drawable {
     public static void setPanelWidth(int w) {
         panelWidth = w;
     }
-
-    public void moveLeft() {
-        changeX(-2);
+    public static void setPanelHeight(int h) {
+        panelHeight = h;
     }
 
-    public void moveRight() {
-        changeX(2);
+    public Direction moveLeft() {
+        if(getX() > 0) {
+            setX(getX() - velocity);
+            return Direction.LEFT;
+        } else {
+            return Direction.NONE;
+        }
     }
 
-    public void moveUp() {
-        changeY(-2);
+    public Direction moveRight() {
+        if(getX() + getWidth() < panelWidth) {
+            setX(getX() + velocity);
+            return Direction.RIGHT;
+        } else {
+            return Direction.NONE;
+        }
     }
 
-    public void moveDown() {
-        changeY(2);
+    public Direction moveUp() {
+        if(getY() > 0) {
+            setY(getY() - velocity);
+            return Direction.UP;
+        } else {
+            return Direction.NONE;
+        }
+    }
+
+    public Direction moveDown() {
+        if(getY() + getHeight() < panelHeight) {
+            setY(getY() + velocity);
+            return Direction.UP;
+        } else {
+            return Direction.NONE;
+        }
     }
 
     public int getDirection() {
@@ -54,10 +78,9 @@ public class Character extends Drawable {
         int xVal = getX();
 
         if (xVal + getWidth() > panelWidth) { // include getWidth() so we bounce off on the right edge
-
             direction = 0; // negative;
             xVal -= velocity;
-        } else if (xVal - getWidth() < 0) {
+        } else if (xVal < 0) {
 
             xVal += velocity;
             direction = 1; // positive

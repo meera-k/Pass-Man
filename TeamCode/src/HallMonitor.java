@@ -3,16 +3,17 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class HallMonitor extends Character {
+    // Image stuff
     private String imagePath = "graphics/sharon.png";
     private ImageIcon img = new ImageIcon(imagePath);
-    private Image scaled = scaleImage(img.getImage(),100,100);
+    private Image scaled = scaleImage(img.getImage(), 39, 66);
     private ImageIcon scaledIcon = new ImageIcon(scaled);
 
-    public HallMonitor(int x, int y, int w, int h, int v) {
-        super(x,y,w,h,v);
+    public HallMonitor(int x, int y, int v) {
+        super(x, y, v);
     }
 
     public void draw(Graphics g) {
-        g.drawImage(scaledIcon.getImage(),getX(),getY(),null);
+        g.drawImage(scaledIcon.getImage(), getX(), getY(), null);
     }
 }
