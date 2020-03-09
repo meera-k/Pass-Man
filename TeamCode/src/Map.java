@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Map {
     private Location[][] grid;
     private int numRows, numCols;
@@ -13,6 +15,16 @@ public class Map {
             }
         }
 
+        // set walls
+
+    }
+
+    public void draw(Graphics g) {
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                grid[row][col].draw(g);
+            }
+        }
     }
 
     public int getNumCols() {

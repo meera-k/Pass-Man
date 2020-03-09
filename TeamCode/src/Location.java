@@ -1,9 +1,11 @@
+import java.awt.*;
+
 public class Location {
 
     private boolean wall = false;
     private boolean drawn = false;
 
-    public void draw()
+    public void draw(Graphics g)
     {
         if (wall && !drawn) {
             // draw
