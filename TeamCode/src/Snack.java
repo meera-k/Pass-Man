@@ -5,13 +5,7 @@ v1.0
 */
 
 public class Snack extends Food {
-    public Snack(String s, int i) {
-        super(s,i);
-    }
-
-    //  TODO: Implement
-    @Override
-    public void draw() {
-
+    public Snack(int x, int y, int w, int h, String s, int i) {
+        super(x, y, w, h, s,i);
     }
 }

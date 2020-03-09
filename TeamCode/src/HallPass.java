@@ -21,4 +21,3 @@ public class HallPass extends Food {
     public void draw(Graphics g) {
     }
 }
-
