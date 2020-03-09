@@ -8,11 +8,7 @@ public class Dot extends Food {
     private static String dotPath; //TODO: set this equal to its image path
     private static int pointVal = 10;
 
-    public Dot() {
-        super(dotPath, pointVal);
-    }
-
-    public void draw() {
-
+    public Dot(int x, int y, int w, int h) {
+        super(x, y, w, h, dotPath, pointVal);
     }
 }

@@ -4,9 +4,6 @@ Sydney Tran, Meera Kumar, Emily Chen
 v1.0
 */
 
-import java.awt.*;
-import javax.swing.*;
-
 public class Food extends Drawable {
     private String imagePath; //path to image for the food item
     private int pointVal; //how many points the food item is worth
