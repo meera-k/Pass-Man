@@ -11,6 +11,13 @@ public abstract class Drawable {
         height = h;
     }
 
+    protected Image scaleImage(Image image, int w, int h) {
+
+        Image scaled = image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+
+        return scaled;
+    }
+
     public void draw(Graphics g, String imagePath) {
         g.drawImage(new ImageIcon(imagePath).getImage(),getX(),getY(),null);
     }

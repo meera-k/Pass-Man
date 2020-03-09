@@ -14,8 +14,8 @@ public class HallPass extends Food {
     private static final String imagePath = "Pass-Man Drawings/pass.png";
     private static final int pointVal = 100;
 
-    public HallPass() {
-        super(imagePath, pointVal);
+    public HallPass(int x, int y, int w, int h) {
+        super(x, y, w, h, imagePath, pointVal);
     }
 
     public void draw(Graphics g) {
