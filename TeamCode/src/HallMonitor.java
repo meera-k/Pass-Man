@@ -6,8 +6,8 @@ public class HallMonitor extends Character {
     // Image stuff
     private String imagePath = "graphics/sharon.png";
     private ImageIcon img = new ImageIcon(imagePath);
-    private Image scaled = scaleImage(img.getImage(), 39, 66);
-    private ImageIcon scaledStillIcon = new ImageIcon(scaled);
+    private Image scaledStill = scaleImage(img.getImage(), 39, 66);
+    private ImageIcon scaledStillIcon = new ImageIcon(scaledStill);
 
     private String f1Path = "graphics/sharon_walking_right_frame1.png";
     private ImageIcon f1 = new ImageIcon(f1Path);
@@ -23,14 +23,6 @@ public class HallMonitor extends Character {
 
     public HallMonitor(int x, int y, int v) {
         super(x, y, v);
-    }
-
-    public void draw(Graphics g) {
-        if(!isMoving) {
-            g.drawImage(scaledStillIcon.getImage(), getX(), getY(), null);
-        } else {
-            drawWalkingRight(g);
-        }
     }
 
     public void move(int charX, int charY) {
@@ -52,16 +44,37 @@ public class HallMonitor extends Character {
         }
     }
 
-    public void drawWalkingRight(Graphics g) {
+    @Override
+    public void drawStill(Graphics g) {
+        g.drawImage(scaledStill, getX(), getY(), null);
+    }
+
+    @Override
+    public void drawMovingLeft(Graphics g) {
+
+    }
+
+    @Override
+    public void drawMovingRight(Graphics g) {
         switch((cntr / 8) % 2) {
             case 0:
-                g.drawImage(right1.getImage(), getX(), getY(), null);
+                g.drawImage(scaledf1, getX(), getY(), null);
                 cntr++;
                 break;
             case 1:
-                g.drawImage(right2.getImage(), getX(), getY(), null);
+                g.drawImage(scaledf2, getX(), getY(), null);
                 cntr++;
                 break;
         }
+    }
+
+    @Override
+    public void drawMovingUp(Graphics g) {
+
+    }
+
+    @Override
+    public void drawMovingDown(Graphics g) {
+
     }
 }

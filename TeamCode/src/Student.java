@@ -23,15 +23,18 @@ public class Student extends Character {
         super(x,y,v);
     }
 
-    public void draw(Graphics g) {
-        if(!isMoving) {
-            g.drawImage(scaledStill, getX(), getY(), null);
-        } else {
-            drawWalkingRight(g);
-        }
+    @Override
+    public void drawStill(Graphics g) {
+        g.drawImage(scaledStill, getX(), getY(), null);
     }
 
-    public void drawWalkingRight(Graphics g) {
+    @Override
+    public void drawMovingLeft(Graphics g) {
+
+    }
+
+    @Override
+    public void drawMovingRight(Graphics g) {
         switch((cntr / 8) % 2) {
             case 0:
                 g.drawImage(scaledf1, getX(), getY(), null);
@@ -42,5 +45,15 @@ public class Student extends Character {
                 cntr++;
                 break;
         }
+    }
+
+    @Override
+    public void drawMovingUp(Graphics g) {
+
+    }
+
+    @Override
+    public void drawMovingDown(Graphics g) {
+
     }
 }
