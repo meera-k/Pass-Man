@@ -5,12 +5,12 @@ public class Location {
     private boolean wall = false;
     private boolean drawn = false;
 
-    public void draw(Graphics g, int x, int y)
+    public void draw(Graphics g, int x, int y, int width, int height)
     {
         if (wall && !drawn) {
             Color oldColor = g.getColor();
             g.setColor(Color.CYAN);
-            g.fillRect(x, y, 10, 10);
+            g.fillRect(x, y, width, height);
             setDrawnTrue();
             g.setColor(oldColor);
         }
