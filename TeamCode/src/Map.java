@@ -22,7 +22,7 @@ public class Map {
     public void draw(Graphics g) {
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
-                grid[row][col].draw(g);
+                grid[row][col].draw(g, row * 10, col * 10);
             }
         }
     }
