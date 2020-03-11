@@ -19,14 +19,13 @@ public class Map {
         }
 
         // set border
-
         for (int col = 0; col < numCols; col++) {
             grid[0][col].setWall();
-            grid[13][col].setWall();
+            grid[18][col].setWall();
         }
         for (int row = 0; row < numRows; row++) {
                 grid[row][0].setWall();
-                grid[row][18].setWall();
+                grid[row][12].setWall();
         }
 
     }

@@ -9,7 +9,7 @@ public class Arcade extends JFrame
     {
         super("AP Java Arcade");
 
-        JavaArcade game = new UserPanel(600, 450);
+        JavaArcade game = new UserPanel(950, 650);
 
         GameStats display = new GameStats(game); //passing in a JavaArcade, therefore I know I can call getHighScore(), getScore()
 
@@ -34,7 +34,7 @@ public class Arcade extends JFrame
     public static void main(String[] args)
     {
         Arcade window = new Arcade();
-        window.setBounds(100, 100, 600, 600);
+        window.setBounds(100, 100, 950, 800);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setVisible(true);
     }
