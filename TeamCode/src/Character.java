@@ -1,15 +1,20 @@
-public class Character extends Drawable {
+import java.awt.*;
+
+public abstract class Character extends Drawable {
     private int direction, velocity;
     private static int panelWidth; // All enemies will share this information
     private static int panelHeight;
 
-    protected boolean isMoving;
+    protected boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
 
     public Character(int x, int y, int v) {
         super(x, y, 39, 66);
         direction = 0;
         velocity = v;
-        isMoving = false;
+        isMovingLeft = false;
+        isMovingRight = false;
+        isMovingUp = false;
+        isMovingDown = false;
     }
 
     public static void setPanelWidth(int w) {
@@ -22,10 +27,10 @@ public class Character extends Drawable {
     public Direction moveLeft() {
         if(getX() > 0) {
             setX(getX() - velocity);
-            isMoving = true;
+            isMovingLeft = true;
             return Direction.LEFT;
         } else {
-            isMoving = false;
+            isMovingLeft = false;
             return Direction.NONE;
         }
     }
@@ -33,10 +38,10 @@ public class Character extends Drawable {
     public Direction moveRight() {
         if(getX() + getWidth() < panelWidth) {
             setX(getX() + velocity);
-            isMoving = true;
+            isMovingRight = true;
             return Direction.RIGHT;
         } else {
-            isMoving = false;
+            isMovingRight = false;
             return Direction.NONE;
         }
     }
@@ -44,10 +49,10 @@ public class Character extends Drawable {
     public Direction moveUp() {
         if(getY() > 0) {
             setY(getY() - velocity);
-            isMoving = true;
+            isMovingUp = true;
             return Direction.UP;
         } else {
-            isMoving = false;
+            isMovingUp = false;
             return Direction.NONE;
         }
     }
@@ -55,10 +60,10 @@ public class Character extends Drawable {
     public Direction moveDown() {
         if(getY() + getHeight() < panelHeight) {
             setY(getY() + velocity);
-            isMoving = true;
+            isMovingUp = true;
             return Direction.UP;
         } else {
-            isMoving = false;
+            isMovingUp = false;
             return Direction.NONE;
         }
     }
@@ -112,4 +117,25 @@ public class Character extends Drawable {
     // centerX += dx;
     // centerY += dy;
     // }
+
+    public void draw(Graphics g) {
+        if(isMovingLeft) {
+            drawMovingRight(g);
+        } else if(isMovingRight) {
+            drawMovingRight(g);
+        } else if(isMovingUp) {
+            drawMovingRight(g);
+        } else if(isMovingDown) {
+            drawMovingRight(g);
+        } else {
+            drawStill(g);
+        }
+    }
+
+    public abstract void drawStill(Graphics g);
+    public abstract void drawMovingLeft(Graphics g);
+    public abstract void drawMovingRight(Graphics g);
+    public abstract void drawMovingUp(Graphics g);
+    public abstract void drawMovingDown(Graphics g);
+
 }
