@@ -9,7 +9,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     int points;
     private Student student; // active student
 
-    private javax.swing.Timer timer; // controls how often we updated the x, y pos of enemies and how often we
+    private Timer timer; // controls how often we updated the x, y pos of enemies and how often we
                                      // repaint
     //private javax.swing.Timer pointsTimer; // controls how often our points value change
 

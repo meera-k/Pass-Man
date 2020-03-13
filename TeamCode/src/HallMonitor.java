@@ -6,18 +6,23 @@ public class HallMonitor extends Character {
     // Image stuff
     private String imagePath = "graphics/sharon.png";
     private ImageIcon img = new ImageIcon(imagePath);
-    private Image scaledStill = scaleImage(img.getImage(), 39, 66);
-    private ImageIcon scaledStillIcon = new ImageIcon(scaledStill);
+    private Image scaledStill = scaleImage(img.getImage(), 26, 44);
 
-    private String f1Path = "graphics/sharon_walking_right_frame1.png";
-    private ImageIcon f1 = new ImageIcon(f1Path);
-    private Image scaledf1 = scaleImage(f1.getImage(), 45, 66);
-    private ImageIcon right1 = new ImageIcon(scaledf1);
+    private String rightf1Path = "graphics/sharon_walking_right_frame1.png";
+    private ImageIcon rightf1 = new ImageIcon(rightf1Path);
+    private Image rightscaledf1 = scaleImage(rightf1.getImage(), 30, 44);
 
-    private String f2Path = "graphics/sharon_walking_right_frame2.png";
-    private ImageIcon f2 = new ImageIcon(f2Path);
-    private Image scaledf2 = scaleImage(f2.getImage(), 39, 66);
-    private ImageIcon right2 = new ImageIcon(scaledf2);
+    private String rightf2Path = "graphics/sharon_walking_right_frame2.png";
+    private ImageIcon rightf2 = new ImageIcon(rightf2Path);
+    private Image rightscaledf2 = scaleImage(rightf2.getImage(), 26, 44);
+
+    private String leftf1Path = "graphics/sharon_walking_left_frame1.png";
+    private ImageIcon leftf1 = new ImageIcon(leftf1Path);
+    private Image leftscaledf1 = scaleImage(leftf1.getImage(), 30, 44);
+
+    private String leftf2Path = "graphics/sharon_walking_left_frame2.png";
+    private ImageIcon leftf2 = new ImageIcon(leftf2Path);
+    private Image leftscaledf2 = scaleImage(leftf2.getImage(), 26, 44);
 
     private int cntr = 0;
 
@@ -51,18 +56,27 @@ public class HallMonitor extends Character {
 
     @Override
     public void drawMovingLeft(Graphics g) {
-
+        switch((cntr / 8) % 2) {
+            case 0:
+                g.drawImage(leftscaledf1, getX(), getY(), null);
+                cntr++;
+                break;
+            case 1:
+                g.drawImage(leftscaledf2, getX(), getY(), null);
+                cntr++;
+                break;
+        }
     }
 
     @Override
     public void drawMovingRight(Graphics g) {
         switch((cntr / 8) % 2) {
             case 0:
-                g.drawImage(scaledf1, getX(), getY(), null);
+                g.drawImage(rightscaledf1, getX(), getY(), null);
                 cntr++;
                 break;
             case 1:
-                g.drawImage(scaledf2, getX(), getY(), null);
+                g.drawImage(rightscaledf2, getX(), getY(), null);
                 cntr++;
                 break;
         }
