@@ -52,18 +52,32 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         // addMouseListener(new PanelListener());
         // addMouseMotionListener(new PanelMotionListener());
 
-        addKeyListener(this);// used for key controls
-
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
         setBackground(backColor);
 
         setPreferredSize(new Dimension(width, height));
-
-        direction = Direction.NONE;
-
+        
         canMove = true;
 
+    }
+
+    public void initializeChars() {
+        enemy = new HallMonitor(100,51,2);
+
+        points = 0;
+
+        student = new Student(201,51,4);
+        
+        addKeyListener(this);// used for key controls
+        
+        direction = Direction.NONE;
+    }
+    public void endChars() {
+        enemy = null;
+        student = null;
+        removeKeyListener(this);
+        direction = Direction.NONE;
     }
 
     /* This method should return true if your game is in a "start" state, it should return false if
@@ -77,6 +91,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
      * can return the appropriate value */
 
     public void startGame() {
+        initializeChars();
         timer.start();
         start = true;
     }

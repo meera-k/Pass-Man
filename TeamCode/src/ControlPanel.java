@@ -61,7 +61,6 @@ public class ControlPanel extends JPanel
                 game.startGame();
                 gStats.update(0);
                 gStats.repaint();
-                repaint();
             }
 
         }
@@ -79,6 +78,7 @@ public class ControlPanel extends JPanel
             gStats.gameOver(game.getPoints());
             gStats.repaint();
             startButton.setEnabled(true);
+            ((UserPanel)(game)).endChars();
             startButton.setText("Restart");
             repaint();
         }
