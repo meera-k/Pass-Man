@@ -37,14 +37,18 @@ public class HallMonitor extends Character {
         if(Math.abs(diffX) > Math.abs(diffY)) { // If HallMonitor is further away in the x-direction than the y-direction
             if(diffX > 0) { // HallMonitor is further right than student
                 moveLeft();
-            } else {
+            } else if (diffX < 0){
                 moveRight();
+            } else {
+                direction = Direction.NONE;
             }
         } else {
             if(diffY > 0) { // HallMonitor is further down than student
                 moveUp();
-            } else {
+            } else if (diffY < 0){
                 moveDown();
+            } else {
+                direction = Direction.NONE;
             }
         }
     }
