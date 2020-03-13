@@ -6,7 +6,7 @@ import java.awt.event.*;
 //UserPanel inherits from JPanel and uses the KeyListener and ActionListener interfaces
 
 public class UserPanel extends JPanel implements KeyListener, ActionListener, JavaArcade {
-    int points;
+    int points, highScore;
     private Student student; // active student
 
     private Timer timer; // controls how often we updated the x, y pos of enemies and how often we
@@ -41,7 +41,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         points = 0;
 
-        student = new Student(200,51,4);
+        student = new Student(201,51,4);
 
         // Status check every 50 milliseconds
         timer = new javax.swing.Timer(50, this);
@@ -77,6 +77,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
      * can return the appropriate value */
 
     public void startGame() {
+        timer.start();
         start = true;
     }
 
@@ -106,9 +107,13 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     }
 
     /* This method should return the highest score played for this game */
-    public String getHighScore() {
+    public int getHighScore() {
         //TODO: Implement
-        return "";
+        return highScore;
+    }
+
+    public void setHighScore(int i) {
+        highScore = i;
     }
 
     /* This method should stop the timers, reset the score, and set a running boolean value to false */
@@ -154,13 +159,13 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         switch (e.getKeyCode()) {
 
-            case KeyEvent.VK_ENTER:// actions performed if enter key is pressed
-                timer.start();
-                //pointsTimer.start();
+            // case KeyEvent.VK_ENTER:// actions performed if enter key is pressed
+            //     timer.start();
+            //     //pointsTimer.start();
 
-                start = true;
+            //     start = true;
 
-                break;
+            //     break;
             case KeyEvent.VK_SPACE:// actions performed if enter key is pressed
 
                 break;
@@ -245,19 +250,19 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemy.move(student.getX(), student.getY());
         switch(direction) {
             case LEFT:
-                if (checkWall(student.getX(), student.getY()))
+                if (!checkWall(student.getX() - 1, student.getY()) && !checkWall(student.getX() - 1, student.getY() + 44))
                     student.moveLeft();
                 break;
             case RIGHT:
-                if (checkWall(student.getX(), student.getY()))
+                if (!checkWall(student.getX() + 1 + 26, student.getY()) && !checkWall(student.getX() + 1 + 26, student.getY() + 44))
                     student.moveRight();
                 break;
             case UP:
-                if (checkWall(student.getX(), student.getY()))
+                if (!checkWall(student.getX(), student.getY() - 1) && !checkWall(student.getX() + 26, student.getY() - 1))
                     student.moveUp();
                 break;
             case DOWN:
-                if (checkWall(student.getX(), student.getY()))
+                if (!checkWall(student.getX(), student.getY() + 1 + 44) && !checkWall(student.getX() + 26, student.getY() + 1 + 44))
                     student.moveDown();
                 break;
         }
