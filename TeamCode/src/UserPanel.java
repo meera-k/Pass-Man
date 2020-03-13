@@ -41,7 +41,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         points = 0;
 
-        student = new Student(200,51,4);
+        student = new Student(201,51,4);
 
         // Status check every 50 milliseconds
         timer = new javax.swing.Timer(50, this);
@@ -245,19 +245,19 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemy.move(student.getX(), student.getY());
         switch(direction) {
             case LEFT:
-                if (checkWall(student.getX(), student.getY()))
+                if (!checkWall(student.getX(), student.getY()))
                     student.moveLeft();
                 break;
             case RIGHT:
-                if (checkWall(student.getX(), student.getY()))
+                if (!checkWall(student.getX(), student.getY()))
                     student.moveRight();
                 break;
             case UP:
-                if (checkWall(student.getX(), student.getY()))
+                if (!checkWall(student.getX(), student.getY()))
                     student.moveUp();
                 break;
             case DOWN:
-                if (checkWall(student.getX(), student.getY()))
+                if (!checkWall(student.getX(), student.getY()))
                     student.moveDown();
                 break;
         }
