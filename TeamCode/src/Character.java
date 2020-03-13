@@ -8,7 +8,7 @@ public abstract class Character extends Drawable {
     protected boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
 
     public Character(int x, int y, int v) {
-        super(x, y, 39, 66);
+        super(x, y, 26, 44);
         direction = 0;
         velocity = v;
         isMovingLeft = false;
@@ -28,6 +28,9 @@ public abstract class Character extends Drawable {
         if(getX() > 0) {
             setX(getX() - velocity);
             isMovingLeft = true;
+            isMovingRight = false;
+            isMovingUp = false;
+            isMovingDown = false;
             return Direction.LEFT;
         } else {
             isMovingLeft = false;
@@ -38,7 +41,10 @@ public abstract class Character extends Drawable {
     public Direction moveRight() {
         if(getX() + getWidth() < panelWidth) {
             setX(getX() + velocity);
+            isMovingLeft = false;
             isMovingRight = true;
+            isMovingUp = false;
+            isMovingDown = false;
             return Direction.RIGHT;
         } else {
             isMovingRight = false;
@@ -49,7 +55,10 @@ public abstract class Character extends Drawable {
     public Direction moveUp() {
         if(getY() > 0) {
             setY(getY() - velocity);
+            isMovingLeft = false;
+            isMovingRight = false;
             isMovingUp = true;
+            isMovingDown = false;
             return Direction.UP;
         } else {
             isMovingUp = false;
@@ -60,8 +69,11 @@ public abstract class Character extends Drawable {
     public Direction moveDown() {
         if(getY() + getHeight() < panelHeight) {
             setY(getY() + velocity);
-            isMovingUp = true;
-            return Direction.UP;
+            isMovingLeft = false;
+            isMovingRight = false;
+            isMovingUp = false;
+            isMovingDown = true;
+            return Direction.DOWN;
         } else {
             isMovingUp = false;
             return Direction.NONE;
@@ -120,7 +132,7 @@ public abstract class Character extends Drawable {
 
     public void draw(Graphics g) {
         if(isMovingLeft) {
-            drawMovingRight(g);
+            drawMovingLeft(g);
         } else if(isMovingRight) {
             drawMovingRight(g);
         } else if(isMovingUp) {

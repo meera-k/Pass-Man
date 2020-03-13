@@ -9,7 +9,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     int points, highScore;
     private Student student; // active student
 
-    private javax.swing.Timer timer; // controls how often we updated the x, y pos of enemies and how often we
+    private Timer timer; // controls how often we updated the x, y pos of enemies and how often we
                                      // repaint
     //private javax.swing.Timer pointsTimer; // controls how often our points value change
 
@@ -22,6 +22,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     private Direction direction;
 
+    private boolean canMove;
+
     public UserPanel(int width, int height) {
 
         Color backColor = Color.black;
@@ -33,13 +35,13 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         playerHeight = height / 22;
         playerWidth = width / 27;
 
-        enemy = new HallMonitor(1,1,2);
+        enemy = new HallMonitor(100,51,2);
 
         map = new Map(width, height);
 
         points = 0;
 
-        student = new Student(100,1,3);
+        student = new Student(201,51,4);
 
         // Status check every 50 milliseconds
         timer = new javax.swing.Timer(50, this);
@@ -59,6 +61,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         setPreferredSize(new Dimension(width, height));
 
         direction = Direction.NONE;
+
+        canMove = true;
 
     }
 
@@ -131,6 +135,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     public void setDisplay(GameStats d) {
         //TODO: Implement
         d.update(points);
+    }
+
+    public boolean checkWall(int x, int y) {
+        return map.isWall(x, y);
     }
 
     public void actionPerformed(ActionEvent e) { // invoked when timer expires every 50ms
@@ -242,16 +250,20 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemy.move(student.getX(), student.getY());
         switch(direction) {
             case LEFT:
-                student.moveLeft();
+                if (!checkWall(student.getX(), student.getY()))
+                    student.moveLeft();
                 break;
             case RIGHT:
-                student.moveRight();
+                if (!checkWall(student.getX(), student.getY()))
+                    student.moveRight();
                 break;
             case UP:
-                student.moveUp();
+                if (!checkWall(student.getX(), student.getY()))
+                    student.moveUp();
                 break;
             case DOWN:
-                student.moveDown();
+                if (!checkWall(student.getX(), student.getY()))
+                    student.moveDown();
                 break;
         }
     }
