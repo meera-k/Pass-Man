@@ -1,20 +1,17 @@
 import java.awt.*;
 
 public abstract class Character extends Drawable {
-    private int direction, velocity;
+    private int velocity;
     private static int panelWidth; // All enemies will share this information
     private static int panelHeight;
 
     protected boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
+    protected Direction direction;
 
     public Character(int x, int y, int v) {
         super(x, y, 26, 44);
-        direction = 0;
+        direction = Direction.NONE;
         velocity = v;
-        isMovingLeft = false;
-        isMovingRight = false;
-        isMovingUp = false;
-        isMovingDown = false;
     }
 
     public static void setPanelWidth(int w) {
@@ -27,13 +24,10 @@ public abstract class Character extends Drawable {
     public Direction moveLeft() {
         if(getX() > 0) {
             setX(getX() - velocity);
-            isMovingLeft = true;
-            isMovingRight = false;
-            isMovingUp = false;
-            isMovingDown = false;
+            direction = Direction.LEFT;
             return Direction.LEFT;
         } else {
-            isMovingLeft = false;
+            direction = Direction.NONE;
             return Direction.NONE;
         }
     }
@@ -41,13 +35,10 @@ public abstract class Character extends Drawable {
     public Direction moveRight() {
         if(getX() + getWidth() < panelWidth) {
             setX(getX() + velocity);
-            isMovingLeft = false;
-            isMovingRight = true;
-            isMovingUp = false;
-            isMovingDown = false;
+            direction = Direction.RIGHT;
             return Direction.RIGHT;
         } else {
-            isMovingRight = false;
+            direction = Direction.NONE;
             return Direction.NONE;
         }
     }
@@ -55,13 +46,10 @@ public abstract class Character extends Drawable {
     public Direction moveUp() {
         if(getY() > 0) {
             setY(getY() - velocity);
-            isMovingLeft = false;
-            isMovingRight = false;
-            isMovingUp = true;
-            isMovingDown = false;
+            direction = Direction.UP;
             return Direction.UP;
         } else {
-            isMovingUp = false;
+            direction = Direction.NONE;
             return Direction.NONE;
         }
     }
@@ -69,19 +57,12 @@ public abstract class Character extends Drawable {
     public Direction moveDown() {
         if(getY() + getHeight() < panelHeight) {
             setY(getY() + velocity);
-            isMovingLeft = false;
-            isMovingRight = false;
-            isMovingUp = false;
-            isMovingDown = true;
+            direction = Direction.DOWN;
             return Direction.DOWN;
         } else {
-            isMovingUp = false;
+            direction = Direction.NONE;
             return Direction.NONE;
         }
-    }
-
-    public int getDirection() {
-        return direction;
     }
 
     public void setVelocity(int v) {
@@ -90,35 +71,6 @@ public abstract class Character extends Drawable {
 
     public int getVelocity() {
         return velocity;
-    }
-
-    public void setDirection(int d) {
-        direction = d % 360;
-    }
-
-    public void turn(int degrees) {
-        direction = (direction + degrees) % 360;
-    }
-
-    // Moves the circle in the current direction using its
-    // current velocity
-    public void move() {
-        int xVal = getX();
-
-        if (xVal + getWidth() > panelWidth) { // include getWidth() so we bounce off on the right edge
-            direction = 0; // negative;
-            xVal -= velocity;
-        } else if (xVal < 0) {
-
-            xVal += velocity;
-            direction = 1; // positive
-        } else {
-            if (direction == 1)
-                xVal += velocity;
-            else
-                xVal -= velocity;
-        }
-        setX(xVal);
     }
 
     public void move(int x, int w) {// moves side to side
@@ -131,16 +83,22 @@ public abstract class Character extends Drawable {
     // }
 
     public void draw(Graphics g) {
-        if(isMovingLeft) {
-            drawMovingLeft(g);
-        } else if(isMovingRight) {
-            drawMovingRight(g);
-        } else if(isMovingUp) {
-            drawMovingRight(g);
-        } else if(isMovingDown) {
-            drawMovingRight(g);
-        } else {
-            drawStill(g);
+        switch(direction) {
+            case LEFT:
+                drawMovingLeft(g);
+                break;
+            case RIGHT:
+                drawMovingRight(g);
+                break;
+            case UP:
+                drawMovingUp(g);
+                break;
+            case DOWN:
+                drawMovingDown(g);
+                break;
+            case NONE:
+                drawStill(g);
+                break;
         }
     }
 
