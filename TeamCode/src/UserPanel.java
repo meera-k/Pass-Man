@@ -6,7 +6,7 @@ import java.awt.event.*;
 //UserPanel inherits from JPanel and uses the KeyListener and ActionListener interfaces
 
 public class UserPanel extends JPanel implements KeyListener, ActionListener, JavaArcade {
-    int points;
+    int points, highScore;
     private Student student; // active student
 
     private Timer timer; // controls how often we updated the x, y pos of enemies and how often we
@@ -77,6 +77,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
      * can return the appropriate value */
 
     public void startGame() {
+        timer.start();
         start = true;
     }
 
@@ -106,9 +107,13 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     }
 
     /* This method should return the highest score played for this game */
-    public String getHighScore() {
+    public int getHighScore() {
         //TODO: Implement
-        return "";
+        return highScore;
+    }
+
+    public void setHighScore(int i) {
+        highScore = i;
     }
 
     /* This method should stop the timers, reset the score, and set a running boolean value to false */
@@ -154,13 +159,13 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         switch (e.getKeyCode()) {
 
-            case KeyEvent.VK_ENTER:// actions performed if enter key is pressed
-                timer.start();
-                //pointsTimer.start();
+            // case KeyEvent.VK_ENTER:// actions performed if enter key is pressed
+            //     timer.start();
+            //     //pointsTimer.start();
 
-                start = true;
+            //     start = true;
 
-                break;
+            //     break;
             case KeyEvent.VK_SPACE:// actions performed if enter key is pressed
 
                 break;
