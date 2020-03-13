@@ -6,9 +6,11 @@ import javax.swing.border.EmptyBorder;
 
 public class GameStats extends JPanel
 {
-    private JTextField gameNameText, currentHighScorer, currentHighScore;
+    private JTextField gameNameText;
+    private static String currentHighScorer;
+    private static int currentHighScore;
     private int yourScore;
-    private JLabel yourScoreText;
+    private JLabel yourScoreText, highScoreText;
     private JavaArcade game;
 
     // Constructor
@@ -23,13 +25,14 @@ public class GameStats extends JPanel
         gName.setForeground(Color.red);
         gName.setFont(gameNameFont);
         add(gName);
-        add(new JLabel(" Current High Score:   " + t.getHighScore()));
+        highScoreText = new JLabel(" Current High Score:   " + t.getHighScore());
+        add(highScoreText);
 
-        add(new JLabel(" "));
-        yourScoreText = new JLabel(" Your Final Score: " + 0);
-
+        yourScoreText = new JLabel(" Your Score: " + 0);
         add(yourScoreText);
+
         Font displayFont = new Font("Monospaced", Font.BOLD, 16);
+
         game = t;
 
     }
@@ -39,6 +42,7 @@ public class GameStats extends JPanel
     {
 
         yourScoreText.setText(" Your Score: " + points);
+        this.points = points;
 
 
     }
@@ -46,9 +50,11 @@ public class GameStats extends JPanel
     {
 
         if(points > game.getHighScore()){
-            yourScoreText.setForeground(Color.BLUE);
-            ((UserPanel)(game)).setHighScore(points);
-            String s = (String)JOptionPane.showInputDialog(this, "You are the new high scorer. Congratulations!\n Enter your name: ", "High Score", JOptionPane.PLAIN_MESSAGE, null, null,"name");
+            //yourScoreText.setForeground(Color.BLUE);
+            currentHighScore = points;
+            ((UserPanel)(game)).setHighScore(currentHighScore);
+            currentHighScorer = (String)JOptionPane.showInputDialog(this, "You are the new high scorer. Congratulations!\n Enter your name: ", "High Score", JOptionPane.PLAIN_MESSAGE, null, null,"name");
+            highScoreText.setText(" Current High Score:   " + currentHighScorer + ": " + currentHighScore);
         }
 
     }

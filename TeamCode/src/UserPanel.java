@@ -57,11 +57,13 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         setBackground(backColor);
 
         setPreferredSize(new Dimension(width, height));
-        
+        addKeyListener(this);// used for key controls
+
         canMove = true;
 
     }
 
+    //intitialize and end are used to restart the game
     public void initializeChars() {
         enemy = new HallMonitor(100,51,2);
 
@@ -69,14 +71,12 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         student = new Student(201,51,4);
         
-        addKeyListener(this);// used for key controls
-        
         direction = Direction.NONE;
     }
+
     public void endChars() {
         enemy = null;
         student = null;
-        removeKeyListener(this);
         direction = Direction.NONE;
     }
 
@@ -90,8 +90,11 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     /* This method should start your game, it should also set a global boolean value so that your running method
      * can return the appropriate value */
 
-    public void startGame() {
-        initializeChars();
+    public void startGame(boolean start_over) {
+        if (start_over) {
+            initializeChars();
+            points = 0;
+        }
         timer.start();
         start = true;
     }
@@ -111,19 +114,16 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     /* This method should return your instructions */
     public String getInstructions() {
-        //TODO: Implement
-        return "";
+        return "Use the arrow keys to move, and whatever you do, avoid Sharon!\n(Eat dots and snacks to earn points. Hall passes let you eat Sharon!)";
     }
 
     /* This method should return the author(s) of the game */
     public String getCredits() {
-        //TODO: Implement
-        return "";
+        return "v1.0\nSydney Tran, Meera Kumar, Emily Chen";
     }
 
     /* This method should return the highest score played for this game */
     public int getHighScore() {
-        //TODO: Implement
         return highScore;
     }
 
@@ -133,9 +133,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     /* This method should stop the timers, reset the score, and set a running boolean value to false */
     public void stopGame() {
-        //TODO: Implement
         timer.stop();
-        points = 0;
         start = false;
     }
 
@@ -231,13 +229,13 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         map.draw(g);
 
         g.setColor(Color.white);
-        g.drawString("Points: " + points, 20, getHeight() - 30);
 
-        if (!start) {// shows instructions in the beginning
-            g.drawString("Instructions: ... write stuff here", (getWidth() / 2) - 100, getHeight() / 2 + 20);
-            g.drawString("(Inactive) Press enter to shoot .", (getWidth() / 2) - 100, getHeight() / 2 + 40);
-            g.drawString("You have 3 lives to kill the enemy", (getWidth() / 2) - 100, getHeight() / 2 + 60);
-        }
+
+        // if (!start) {// shows instructions in the beginning
+        //     g.drawString("Instructions: ... write stuff here", (getWidth() / 2) - 100, getHeight() / 2 + 20);
+        //     g.drawString("(Inactive) Press enter to shoot .", (getWidth() / 2) - 100, getHeight() / 2 + 40);
+        //     g.drawString("You have 3 lives to kill the enemy", (getWidth() / 2) - 100, getHeight() / 2 + 60);
+        // }
 
     }
 
