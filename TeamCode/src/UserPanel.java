@@ -250,19 +250,19 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemy.move(student.getX(), student.getY());
         switch(direction) {
             case LEFT:
-                if (!checkWall(student.getX() - 1, student.getY()) && !checkWall(student.getX() - 1, student.getY() + 44))
+                if (!checkWall(student.getX() - 1, student.getY()) && !checkWall(student.getX() - 1, student.getY() + 44 + 1))
                     student.moveLeft();
                 break;
             case RIGHT:
-                if (!checkWall(student.getX() + 1 + 26, student.getY()) && !checkWall(student.getX() + 1 + 26, student.getY() + 44))
+                if (!checkWall(student.getX() + 1 + 26, student.getY()) && !checkWall(student.getX() + 1 + 26, student.getY() + 44 + 1))
                     student.moveRight();
                 break;
             case UP:
-                if (!checkWall(student.getX(), student.getY() - 1) && !checkWall(student.getX() + 26, student.getY() - 1))
+                if (!checkWall(student.getX(), student.getY() - 1) && !checkWall(student.getX() + 26 + 1, student.getY() - 1))
                     student.moveUp();
                 break;
             case DOWN:
-                if (!checkWall(student.getX(), student.getY() + 1 + 44) && !checkWall(student.getX() + 26, student.getY() + 1 + 44))
+                if (!checkWall(student.getX(), student.getY() + 1 + 44) && !checkWall(student.getX() + 26 + 1, student.getY() + 1 + 44))
                     student.moveDown();
                 break;
         }
