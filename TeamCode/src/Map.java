@@ -68,9 +68,6 @@ public class Map {
             }
         }
 
-
-
-
     }
 
     public void draw(Graphics g) {
@@ -89,5 +86,14 @@ public class Map {
         return numRows;
     }
 
-
+    public boolean isWall(int x, int y) {
+        for (int row = 1; row < numRows; row++) {
+            for (int col = 1; col < numCols; col++) {
+                if (col * width >= x && (col - 1) * width <= x && row * height >= y && (row - 1) * height <= y) {
+                    return grid[row][col].getWall();
+                }
+            }
+        }
+        return false;
+    }
 }
