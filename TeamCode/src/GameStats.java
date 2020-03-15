@@ -10,11 +10,11 @@ import javax.swing.border.EmptyBorder;
 import java.util.Scanner;
 
 public class GameStats extends JPanel {
-    private JTextField gameNameText;
+    // private JTextField gameNameText;
     // private String currentHighScorer;
     // private int currentHighScore;
     private String highScore;
-    private int yourScore;
+    // private int yourScore;
     private JLabel yourScoreLabel, highScoreLabel;
     private JavaArcade game;
 

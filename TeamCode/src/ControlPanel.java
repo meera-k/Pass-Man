@@ -4,8 +4,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import java.awt.Component;
-import java.awt.Container;
+// import java.awt.Component;
+// import java.awt.Container;
 import javax.swing.Box;
 import javax.swing.*;
 
@@ -15,6 +15,7 @@ public class ControlPanel extends JPanel
     private JavaArcade game;
     private GameStats gStats;
     private JButton startButton, pauseButton, stopButton, instructionsButton, creditsButton;
+    private boolean isStopped = false;
 
     // Constructor
     public ControlPanel(JavaArcade t, GameStats g)
@@ -58,22 +59,27 @@ public class ControlPanel extends JPanel
             }
             if (!game.running())
             {
+                isStopped = false;
                 ((JPanel)(game)).requestFocus(); //need to provide the JPanel focus
                 ((UserPanel)(game)).startGame(starting_over);
                 gStats.update(game.getPoints());
                 gStats.repaint();
+                startButton.setText("Resume");
             }
 
         }
         else if(button == pauseButton)
         {
-            private_pause();
-            //MK - this tests the scoring
-            gStats.update(game.getPoints());
+            if (!isStopped) {
+                private_pause();
+                //MK - this tests the scoring
+                gStats.update(game.getPoints());
+            }
 
         }
         else if(button == stopButton)
         {
+            isStopped = true;
             game.stopGame();
             gStats.gameOver(game.getPoints());
             gStats.repaint();
