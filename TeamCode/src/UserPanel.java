@@ -60,6 +60,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         addKeyListener(this);// used for key controls
 
         canMove = true;
+        highScore = 0;
 
     }
 
@@ -110,6 +111,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     public void pauseGame() {
         timer.stop();
         start = false;
+        //MK - this tests the scoring
+        points+=10;
     }
 
     /* This method should return your instructions */
