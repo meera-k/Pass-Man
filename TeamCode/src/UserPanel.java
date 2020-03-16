@@ -99,6 +99,11 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         start = true;
     }
 
+    public void startGame() {
+        timer.start();
+        start = true;
+    }
+
     /*This method should return the name of your game */
     public String getGameName() {
         return "Pass-Man";
