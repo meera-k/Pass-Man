@@ -68,6 +68,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     }
 
+    public void startGame() {
+
+    }
+
     //intitialize and end are used to restart the game
     public void initializeChars() {
         enemy = new HallMonitor(100,51,2);
@@ -100,11 +104,6 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
             initializeChars();
             points = 0;
         }
-        timer.start();
-        start = true;
-    }
-
-    public void startGame() {
         timer.start();
         start = true;
     }
@@ -159,7 +158,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     GameStats is created in Arcade, a reference should be passed to UserPanel (main panel) to update points */
     public void setDisplay(GameStats d) {
         //TODO: Implement
-        d.update(getPoints());
+        d.update(points);
     }
 
     public boolean checkWall(int x, int y) {
@@ -248,8 +247,6 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
                 }
             }
         }
-
-    
 
         g.setColor(Color.white);
 

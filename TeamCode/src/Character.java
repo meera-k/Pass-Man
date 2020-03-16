@@ -22,7 +22,7 @@ public abstract class Character extends Drawable {
     }
 
     public Direction moveLeft() {
-        if(getX() > 0) {
+        if(getX() - velocity > 0) {
             setX(getX() - velocity);
             direction = Direction.LEFT;
             return Direction.LEFT;
@@ -33,7 +33,7 @@ public abstract class Character extends Drawable {
     }
 
     public Direction moveRight() {
-        if(getX() + getWidth() < panelWidth) {
+        if(getX() + getWidth() + velocity < panelWidth) {
             setX(getX() + velocity);
             direction = Direction.RIGHT;
             return Direction.RIGHT;
@@ -44,7 +44,7 @@ public abstract class Character extends Drawable {
     }
 
     public Direction moveUp() {
-        if(getY() > 0) {
+        if(getY() - velocity > 0) {
             setY(getY() - velocity);
             direction = Direction.UP;
             return Direction.UP;
@@ -55,7 +55,7 @@ public abstract class Character extends Drawable {
     }
 
     public Direction moveDown() {
-        if(getY() + getHeight() < panelHeight) {
+        if(getY() + getHeight() + velocity < panelHeight) {
             setY(getY() + velocity);
             direction = Direction.DOWN;
             return Direction.DOWN;
