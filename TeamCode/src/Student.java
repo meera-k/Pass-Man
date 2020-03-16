@@ -63,11 +63,33 @@ public class Student extends Character {
 
     @Override
     public void drawMovingUp(Graphics g) {
-
+        switch((cntr / 8) % 2) {
+            case 0:
+                g.drawImage(rightscaledf1, getX(), getY(), null);
+                cntr++;
+                break;
+            case 1:
+                g.drawImage(rightscaledf2, getX(), getY(), null);
+                cntr++;
+                break;
+        }
     }
 
     @Override
     public void drawMovingDown(Graphics g) {
+        switch((cntr / 8) % 2) {
+            case 0:
+                g.drawImage(rightscaledf1, getX(), getY(), null);
+                cntr++;
+                break;
+            case 1:
+                g.drawImage(rightscaledf2, getX(), getY(), null);
+                cntr++;
+                break;
+        }
+    }
 
+    public void setDirection(Direction d) {
+        direction = d;
     }
 }

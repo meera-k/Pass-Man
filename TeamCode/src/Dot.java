@@ -8,18 +8,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Dot extends Food {
+    private final static int WIDTH = 10, HEIGHT = 10;
+
     // Image stuff
     private static String imagePath = "graphics/dot.png";
     private static int pointVal = 10;
     private ImageIcon img = new ImageIcon(imagePath);
-    private Image scaled = scaleImage(img.getImage(), 100, 100);
-    private ImageIcon scaledIcon = new ImageIcon(scaled);
+    private Image scaled = scaleImage(img.getImage(), WIDTH, HEIGHT);
 
     public Dot(int x, int y) {
-        super(x, y, 15, 15, imagePath, pointVal);
+        super(x, y, WIDTH, HEIGHT, imagePath, pointVal);
     }
 
     public void draw(Graphics g) {
-        g.drawImage(scaledIcon.getImage(), getX(), getY(), null);
+        g.drawImage(scaled, getX() - getWidth() / 2, getY() - getHeight() / 2, null);
     }
 }
