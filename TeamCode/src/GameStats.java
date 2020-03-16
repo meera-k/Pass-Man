@@ -52,11 +52,13 @@ public class GameStats extends JPanel {
             String highScorer = (String) JOptionPane.showInputDialog(this,
                     "You are the new high scorer. Congratulations!\n Enter your name: ", "High Score",
                     JOptionPane.PLAIN_MESSAGE, null, null, "name");
-
             PrintWriter writer;
             try {
                 writer = new PrintWriter(new File("highScores.txt"));
-                writer.println("Current High Score: " + highScorer + ", " + points);
+                if (!highScorer.equals(null))
+                    writer.println("Current High Score: " + highScorer + ", " + points);
+                else
+                    writer.println("Current High Score: " + points);
                 writer.close();
             } catch (FileNotFoundException e) {
                 System.out.println("IT'S NOT WRITING");
