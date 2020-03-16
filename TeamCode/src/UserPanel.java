@@ -19,12 +19,16 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     private boolean start = false;
     private int x, y;
+    private int width, height;
 
     private Direction direction;
 
     private boolean canMove;
 
     public UserPanel(int width, int height) {
+
+        this.width = width;
+        this.height = height;
 
         Color backColor = Color.black;
 
@@ -155,7 +159,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     GameStats is created in Arcade, a reference should be passed to UserPanel (main panel) to update points */
     public void setDisplay(GameStats d) {
         //TODO: Implement
-        d.update(points);
+        d.update(getPoints());
     }
 
     public boolean checkWall(int x, int y) {
@@ -235,6 +239,17 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemy.draw(g);
 
         map.draw(g);
+
+        for(int x = 25; x < width - 25 ; x += 100) {
+            for(int y = 25; y < height - 25; y += 100) {
+                if(!checkWall(x, y)) {
+                    Dot d = new Dot(x, y);
+                    d.draw(g);
+                }
+            }
+        }
+
+    
 
         g.setColor(Color.white);
 

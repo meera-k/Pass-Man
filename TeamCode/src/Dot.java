@@ -16,7 +16,7 @@ public class Dot extends Food {
     private ImageIcon scaledIcon = new ImageIcon(scaled);
 
     public Dot(int x, int y) {
-        super(x, y, 15, 15, imagePath, pointVal);
+        super(x, y, 1, 1, imagePath, pointVal);
     }
 
     public void draw(Graphics g) {
