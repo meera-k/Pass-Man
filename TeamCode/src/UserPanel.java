@@ -240,8 +240,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         map.draw(g);
 
-        for(int x = 25; x < width - 25 ; x += 100) {
-            for(int y = 25; y < height - 25; y += 100) {
+        for(int x = 25; x < width - 25 ; x += 50) {
+            for(int y = 25; y < height - 25; y += 50) {
                 if(!checkWall(x, y)) {
                     Dot d = new Dot(x, y);
                     d.draw(g);
