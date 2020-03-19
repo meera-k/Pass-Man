@@ -42,15 +42,20 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         playerHeight = height / 22;
         playerWidth = width / 27;
 
-        enemies = new HallMonitor[7];
+        enemies = new HallMonitor[4];
+
+        // enemies[0] = new HallMonitor(101,51,2);
+        // enemies[1] = new HallMonitor(101,height - 51 - 44,2);
+        // enemies[2] = new HallMonitor(width - 101 - 26,51,2);
+        // enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
+        // enemies[4] = new HallMonitor(451,201,2);
+        // enemies[5] = new HallMonitor(651,251,2);
+        // enemies[6] = new HallMonitor(251,351,2);
 
         enemies[0] = new HallMonitor(101,51,2);
-        enemies[1] = new HallMonitor(101,height - 51 - 44,2);
-        enemies[2] = new HallMonitor(width - 101 - 26,51,2);
+        enemies[1] = new HallMonitor(651,251,2);
+        enemies[2] = new HallMonitor(251,351,2);
         enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
-        enemies[4] = new HallMonitor(451,201,2);
-        enemies[5] = new HallMonitor(651,251,2);
-        enemies[6] = new HallMonitor(251,351,2);
 
         map = new Map(width, height);
 
@@ -95,13 +100,18 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     //intitialize and end are used to restart the game
     public void initializeChars() {
         
+        // enemies[0] = new HallMonitor(101,51,2);
+        // enemies[1] = new HallMonitor(101,height - 51 - 44,2);
+        // enemies[2] = new HallMonitor(width - 101 - 26,51,2);
+        // enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
+        // enemies[4] = new HallMonitor(451,201,2);
+        // enemies[5] = new HallMonitor(651,251,2);
+        // enemies[6] = new HallMonitor(251,351,2);
+
         enemies[0] = new HallMonitor(101,51,2);
-        enemies[1] = new HallMonitor(101,height - 51 - 44,2);
-        enemies[2] = new HallMonitor(width - 101 - 26,51,2);
+        enemies[1] = new HallMonitor(651,251,2);
+        enemies[2] = new HallMonitor(251,351,2);
         enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
-        enemies[4] = new HallMonitor(451,201,2);
-        enemies[5] = new HallMonitor(651,251,2);
-        enemies[6] = new HallMonitor(251,351,2);
 
         points = 0;
 
