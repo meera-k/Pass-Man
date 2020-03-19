@@ -127,7 +127,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         direction = Direction.NONE;
 
         for (int i = 0; i < dots.size(); i++) {
-            dots.set(i, null);
+            dots.remove(0);
         }
     }
 
@@ -205,6 +205,14 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     public boolean checkWall(int x, int y) {
         return map.isWall(x, y);
+    }
+
+    public void updateDots(int x, int y) {
+        for(int i = 0; i < dots.size(); i++) {
+            if(dots.get(i).getX() >= x && dots.get(i).getX() <= x + 26 && dots.get(i).getY() >= y && dots.get(i).getY() <= y + 44) {
+                dots.remove(i);
+            }
+        }
     }
 
     public void actionPerformed(ActionEvent e) { // invoked when timer expires every 50ms
@@ -286,9 +294,6 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         for (HallMonitor e : enemies) {
             e.draw(g);
         }
-        
-
-        
 
         g.setColor(Color.white);
 
@@ -343,6 +348,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
                     student.moveDown();
                 break;
         }
+
+        updateDots(student.getX(), student.getY());
     }
 
     private class PanelListener extends MouseAdapter {
