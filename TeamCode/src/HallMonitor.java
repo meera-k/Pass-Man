@@ -30,24 +30,6 @@ public class HallMonitor extends Character {
         super(x, y, v);
     }
 
-    /**
-     * if (!checkWall(student.getX() - 1, student.getY()) && !checkWall(student.getX() - 1, student.getY() + 44 + 1))
-                    student.moveLeft();
-                break;
-            case RIGHT:
-                if (!checkWall(student.getX() + 1 + 26, student.getY()) && !checkWall(student.getX() + 1 + 26, student.getY() + 44 + 1))
-                    student.moveRight();
-                break;
-            case UP:
-                if (!checkWall(student.getX(), student.getY() - 1) && !checkWall(student.getX() + 26 + 1, student.getY() - 1))
-                    student.moveUp();
-                break;
-            case DOWN:
-                if (!checkWall(student.getX(), student.getY() + 1 + 44) && !checkWall(student.getX() + 26 + 1, student.getY() + 1 + 44))
-                    student.moveDown();
-                break;
-     */
-
     public void move(int charX, int charY, Map map) {
         int diffX = getX() - charX;
         int diffY = getY() - charY;
