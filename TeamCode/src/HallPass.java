@@ -13,11 +13,17 @@ public class HallPass extends Food {
     
     private static final String imagePath = "Pass-Man Drawings/pass.png";
     private static final int pointVal = 100;
+    private ImageIcon img = new ImageIcon(imagePath);
+    private Image scaled = scaleImage(img.getImage(), 37, 61);
 
     public HallPass(int x, int y) {
         super(x, y, 37, 61, imagePath, pointVal);
     }
 
     public void draw(Graphics g) {
+        g.drawImage(scaled, getX() - getWidth() / 2, getY() - getHeight() / 2, null);
     }
 }
+
+
+

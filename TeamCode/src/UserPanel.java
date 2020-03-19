@@ -16,6 +16,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     private HallMonitor[] enemies;
 
+    private HallPass[] passes;
+
     private ArrayList<Dot> dots;
 
     private Map map;
@@ -56,6 +58,14 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemies[1] = new HallMonitor(651,251,2);
         enemies[2] = new HallMonitor(251,351,2);
         enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
+        
+        passes = new HallPass[4];
+
+        passes[0] = new HallPass(101,height - 51 - 44);
+        passes[1] = new HallPass(width - 101 - 26,51);
+        passes[2] = new HallPass(451,201);
+        passes[3] = new HallPass(451,301);
+
 
         map = new Map(width, height);
 
@@ -112,6 +122,11 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemies[1] = new HallMonitor(651,251,2);
         enemies[2] = new HallMonitor(251,351,2);
         enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
+
+        passes[0] = new HallPass(101,height - 51 - 44);
+        passes[1] = new HallPass(width - 101 - 26,51);
+        passes[2] = new HallPass(451,201);
+        passes[3] = new HallPass(451,301);
 
         points = 0;
 
@@ -226,6 +241,15 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         }
     }
 
+    public void updatePass(int x, int y) {
+        for(int i = 0; i < passes.length; i++) {
+            if(passes[i].getX() >= x && passes[i].getX() <= x + 26 && passes[i].getY() >= y && passes[i].getY() <= y + 44) {
+                // remove pass
+                points += 100;
+            }
+        }
+    }
+
     public void actionPerformed(ActionEvent e) { // invoked when timer expires every 50ms
         checkStats();
         repaint(); // ensures PaintComponent is called
@@ -306,6 +330,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
             e.draw(g);
         }
 
+        for (HallPass p : passes) {
+            p.draw(g);
+        }
+
         g.setColor(Color.white);
 
 
@@ -361,6 +389,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         }
 
         updateDots(student.getX(), student.getY());
+
+        updatePass(student.getX(), student.getY());
 
         for (HallMonitor e : enemies) {
             if(e.getX() + 13 >= student.getX() && e.getX() + 13 <= student.getX() + 26 && e.getY() + 22 >= student.getY() && e.getY() + 22 <= student.getY() + 44) {
