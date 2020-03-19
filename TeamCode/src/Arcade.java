@@ -20,7 +20,7 @@ public class Arcade extends JFrame
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        panel.setBorder(new EmptyBorder(0, 5, 0, 5));
+        panel.setBorder(new EmptyBorder(0, 0, 0, 0));
         panel.add(display, BorderLayout.NORTH);
         panel.add((JPanel)game, BorderLayout.CENTER);
         panel.add(controls, BorderLayout.SOUTH);
@@ -34,7 +34,7 @@ public class Arcade extends JFrame
     public static void main(String[] args)
     {
         Arcade window = new Arcade();
-        window.setBounds(100, 100, 950, 800);
+        window.setBounds(100, 100, 950, 775);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setVisible(true);
     }

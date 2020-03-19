@@ -13,7 +13,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
                                      // repaint
     //private javax.swing.Timer pointsTimer; // controls how often our points value change
 
-    private HallMonitor enemy;
+    private HallMonitor[] enemies;
     
     private Map map;
 
@@ -39,7 +39,15 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         playerHeight = height / 22;
         playerWidth = width / 27;
 
-        enemy = new HallMonitor(100,51,2);
+        enemies = new HallMonitor[7];
+
+        enemies[0] = new HallMonitor(101,51,2);
+        enemies[1] = new HallMonitor(101,height - 51 - 44,2);
+        enemies[2] = new HallMonitor(width - 101 - 26,51,2);
+        enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
+        enemies[4] = new HallMonitor(451,201,2);
+        enemies[5] = new HallMonitor(651,251,2);
+        enemies[6] = new HallMonitor(251,351,2);
 
         map = new Map(width, height);
 
@@ -74,7 +82,14 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     //intitialize and end are used to restart the game
     public void initializeChars() {
-        enemy = new HallMonitor(100,51,2);
+        
+        enemies[0] = new HallMonitor(101,51,2);
+        enemies[1] = new HallMonitor(101,height - 51 - 44,2);
+        enemies[2] = new HallMonitor(width - 101 - 26,51,2);
+        enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
+        enemies[4] = new HallMonitor(451,201,2);
+        enemies[5] = new HallMonitor(651,251,2);
+        enemies[6] = new HallMonitor(251,351,2);
 
         points = 0;
 
@@ -84,7 +99,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     }
 
     public void endChars() {
-        enemy = null;
+        for (HallMonitor e : enemies) {
+            e = null;
+        }
         student = null;
         direction = Direction.NONE;
     }
@@ -235,7 +252,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         g.drawImage(bagel.getImage(),100,100,null);
 
         // Draw enemies
-        enemy.draw(g);
+        for (HallMonitor e : enemies) {
+            e.draw(g);
+        }
+        
 
         map.draw(g);
 
@@ -280,7 +300,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         Character.setPanelWidth(getWidth()); // update static field so all Circle objects know current panel width
         Character.setPanelHeight(getHeight());
-        enemy.move(student.getX(), student.getY(), map);
+        for (HallMonitor e : enemies) {
+            e.move(student.getX(), student.getY(), map);
+        }
         switch(direction) {
             case LEFT:
                 if (!checkWall(student.getX() - 1, student.getY()) && !checkWall(student.getX() - 1, student.getY() + 44 + 1))

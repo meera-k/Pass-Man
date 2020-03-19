@@ -1,1 +1,1 @@
-Current High Score: null, 10
+Current High Score: hi, 10
