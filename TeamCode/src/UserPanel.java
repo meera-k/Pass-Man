@@ -2,6 +2,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 //UserPanel inherits from JPanel and uses the KeyListener and ActionListener interfaces
 
@@ -14,7 +15,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     //private javax.swing.Timer pointsTimer; // controls how often our points value change
 
     private HallMonitor[] enemies;
-    
+
+    private ArrayList<Dot> dots;
+
     private Map map;
 
     private boolean start = false;
@@ -50,6 +53,15 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemies[6] = new HallMonitor(251,351,2);
 
         map = new Map(width, height);
+
+        dots = new ArrayList<Dot>();
+        for(int x = 25; x < width - 25 ; x += 50) {
+            for(int y = 25; y < height - 25; y += 50) {
+                if(!checkWall(x, y)) {
+                    dots.add(new Dot(x, y));
+                }
+            }
+        }
 
         points = 0;
 
@@ -96,14 +108,27 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         student = new Student(201,51,4);
         
         direction = Direction.NONE;
+
+        dots = new ArrayList<Dot>();
+        for(int x = 25; x < width - 25 ; x += 50) {
+            for(int y = 25; y < height - 25; y += 50) {
+                if(!checkWall(x, y)) {
+                    dots.add(new Dot(x, y));
+                }
+            }
+        }
     }
 
     public void endChars() {
-        for (HallMonitor e : enemies) {
-            e = null;
+        for (int i = 0; i < enemies.length; i++) {
+            enemies[i] = null;
         }
         student = null;
         direction = Direction.NONE;
+
+        for (int i = 0; i < dots.size(); i++) {
+            dots.set(i, null);
+        }
     }
 
     /* This method should return true if your game is in a "start" state, it should return false if
@@ -259,14 +284,11 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         map.draw(g);
 
-        for(int x = 25; x < width - 25 ; x += 50) {
-            for(int y = 25; y < height - 25; y += 50) {
-                if(!checkWall(x, y)) {
-                    Dot d = new Dot(x, y);
-                    d.draw(g);
-                }
-            }
+        for (Dot d : dots) {
+            d.draw(g);
         }
+
+        
 
         g.setColor(Color.white);
 
