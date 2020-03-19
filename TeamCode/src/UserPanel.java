@@ -211,6 +211,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         for(int i = 0; i < dots.size(); i++) {
             if(dots.get(i).getX() >= x && dots.get(i).getX() <= x + 26 && dots.get(i).getY() >= y && dots.get(i).getY() <= y + 44) {
                 dots.remove(i);
+                points += 10;
             }
         }
     }
