@@ -12,7 +12,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     private Timer timer; // controls how often we updated the x, y pos of enemies and how often we
                                      // repaint
-    //private javax.swing.Timer pointsTimer; // controls how often our points value change
+
+    private int hallPassTimer;
 
     private HallMonitor[] enemies;
 
@@ -28,7 +29,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     private Direction direction;
 
-    private boolean canMove;
+    private boolean power;
 
     public UserPanel(int width, int height) {
 
@@ -76,12 +77,16 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         student = new Student(201,51,4);
 
+        power = false;
+
         // Status check every 50 milliseconds
         timer = new javax.swing.Timer(50, this);
 
+        hallPassTimer = 0;
+
         // Timer invoked every 3 seconds, just a demo of using 2 timers - currently
         // points value decrease
-        // pointsTimer = new javax.swing.Timer(3000, new PointsListener());
+        // hallPassTimer = new javax.swing.Timer(3000, new PointsListener());
         // addMouseListener(new PanelListener());
         // addMouseMotionListener(new PanelMotionListener());
 
@@ -92,7 +97,6 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         setPreferredSize(new Dimension(width, height));
         addKeyListener(this);// used for key controls
 
-        canMove = true;
         highScore = 0;
 
     }
@@ -117,6 +121,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         points = 0;
 
         student = new Student(201,51,4);
+
+        power = false;
+
+        hallPassTimer = 0;
         
         direction = Direction.NONE;
 
@@ -234,6 +242,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
             if(passes.get(i).getX() >= x && passes.get(i).getX() <= x + 26 && passes.get(i).getY() >= y && passes.get(i).getY() <= y + 44) {
                 passes.remove(i);
                 points += 100;
+                power = true;
             }
         }
     }
@@ -381,10 +390,22 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         updatePass(student.getX(), student.getY());
 
+        if (power) {
+            if (hallPassTimer < 200) {
+                hallPassTimer++;
+            }
+            else {
+                power = false;
+                hallPassTimer = 0;
+            }
+        }
+
         for (HallMonitor e : enemies) {
             if(e.getX() + 13 >= student.getX() && e.getX() + 13 <= student.getX() + 26 && e.getY() + 22 >= student.getY() && e.getY() + 22 <= student.getY() + 44) {
-                stopGame();
-                // add
+                if (!power) {
+                    stopGame();
+                    //add game over
+                }
             }
         }
     }
