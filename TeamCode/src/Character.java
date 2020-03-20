@@ -5,7 +5,6 @@ public abstract class Character extends Drawable {
     private static int panelWidth; // All enemies will share this information
     private static int panelHeight;
 
-    protected boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
     protected Direction direction;
 
     public Character(int x, int y, int v) {

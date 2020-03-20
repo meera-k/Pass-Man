@@ -54,11 +54,11 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         // enemies[5] = new HallMonitor(651,251,2);
         // enemies[6] = new HallMonitor(251,351,2);
 
-        enemies[0] = new HallMonitor(101,51,2);
-        enemies[1] = new HallMonitor(651,251,2);
-        enemies[2] = new HallMonitor(251,351,2);
-        enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
-        
+        enemies[0] = new Sharon(101,51,2);
+        enemies[1] = new Sharon(651,251,2);
+        enemies[2] = new Sharon(251,351,2);
+        enemies[3] = new Sharon(width - 101 - 26,height - 51 - 44,2);
+
         passes = new ArrayList<HallPass>(4);
         passes.add(new HallPass(125,height - 50 - 25));
         passes.add(new HallPass(width - 100 - 25,75));
@@ -116,10 +116,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         // enemies[5] = new HallMonitor(651,251,2);
         // enemies[6] = new HallMonitor(251,351,2);
 
-        enemies[0] = new HallMonitor(101,51,2);
-        enemies[1] = new HallMonitor(651,251,2);
-        enemies[2] = new HallMonitor(251,351,2);
-        enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
+        enemies[0] = new Sharon(101,51,2);
+        enemies[1] = new Sharon(651,251,2);
+        enemies[2] = new Sharon(251,351,2);
+        enemies[3] = new Sharon(width - 101 - 26,height - 51 - 44,2);
 
         passes.add(new HallPass(101,height - 51 - 44));
         passes.add(new HallPass(width - 101 - 26,51));
