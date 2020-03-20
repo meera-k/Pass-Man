@@ -2,7 +2,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.net.URL;
+import javax.sound.sampled.*;
 
 //UserPanel inherits from JPanel and uses the KeyListener and ActionListener interfaces
 
@@ -30,6 +33,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     private Direction direction;
 
     private boolean power;
+
+    private URL url;  
+    private Clip clip;
+    private int frames;
 
     public UserPanel(int width, int height) {
 
@@ -169,6 +176,24 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         }
         timer.start();
         start = true;
+        
+        try {
+            // Open an audio input stream.
+                url = this.getClass().getClassLoader().getResource("music/media.io_videoplayback.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            // Get a sound clip resource.
+                clip = AudioSystem.getClip();
+            // Open audio clip and load samples from the audio input stream.
+            clip.open(audioIn);
+            clip.setFramePosition(frames);
+            clip.start();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
     /*This method should return the name of your game */
@@ -184,6 +209,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         start = false;
         //MK - this tests the scoring
         points+=10;
+        frames = clip.getFramePosition(); //restart music at this frame
+	    clip.stop();	
     }
 
     /* This method should return your instructions */
@@ -209,6 +236,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     public void stopGame() {
         timer.stop();
         start = false;
+        clip.stop();
+        frames = 0;
     }
 
     /* This method shoud return the current players number of points */
