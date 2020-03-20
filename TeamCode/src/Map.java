@@ -70,10 +70,10 @@ public class Map {
 
     }
 
-    public void draw(Graphics g, Color color) {
+    public void draw(Graphics g) {
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
-                grid[row][col].draw(g, col * width, row * height, width, height, color);
+                grid[row][col].draw(g, col * width, row * height, width, height);
             }
         }
     }
