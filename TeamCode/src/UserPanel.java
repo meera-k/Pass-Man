@@ -62,15 +62,15 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         passes = new ArrayList<HallPass>(4);
         passes.add(new HallPass(125,height - 50 - 25));
         passes.add(new HallPass(width - 100 - 25,75));
-        passes.add(new HallPass(475,225));
-        passes.add(new HallPass(475,325));
+        passes.add(new HallPass(475,275));
+        passes.add(new HallPass(475,375));
 
         map = new Map(width, height);
 
         dots = new ArrayList<Dot>();
         for(int x = 25; x < width - 25 ; x += 50) {
             for(int y = 25; y < height - 25; y += 50) {
-                if(!checkWall(x, y) && (x != 275 && y!= 275) && (x != 125 && y!= height - 50 - 25) && (x != width - 100 - 25 && y!= 75) && (x != 475 && y!= 225) && (x != 475 && y!= 225)) {
+                if(!checkWall(x, y) && (x != 275 && y!= 275) && (x != 125 && y!= height - 50 - 25) && (x != width - 100 - 25 && y!= 75) && (x != 475 && y!= 275) && (x != 475 && y!= 275)) {
                     dots.add(new Dot(x, y));
                 }
             }
@@ -121,10 +121,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemies[2] = new Sharon(251,351,2);
         enemies[3] = new Sharon(width - 101 - 26,height - 51 - 44,2);
 
-        passes.add(new HallPass(101,height - 51 - 44));
-        passes.add(new HallPass(width - 101 - 26,51));
-        passes.add(new HallPass(451,201));
-        passes.add(new HallPass(451,301));
+        passes.add(new HallPass(125,height - 50 - 25));
+        passes.add(new HallPass(width - 100 - 25,75));
+        passes.add(new HallPass(475,275));
+        passes.add(new HallPass(475,375));
 
         points = 0;
 
