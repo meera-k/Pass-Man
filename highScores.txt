@@ -1,4 +1,2 @@
 <<<<<<< HEAD
 Current High Score: name, 1170
-=======
->>>>>>> bb1f0b55bb02aaef0bde54e910eec784de641509
