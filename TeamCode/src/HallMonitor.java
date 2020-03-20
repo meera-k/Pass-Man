@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class HallMonitor extends Character {
+public abstract class HallMonitor extends Character {
     // Image stuff
     private String imagePath = "graphics/sharon.png";
     private ImageIcon img = new ImageIcon(imagePath);
@@ -30,50 +30,7 @@ public class HallMonitor extends Character {
         super(x, y, v);
     }
 
-    public void move(int charX, int charY, Map map) {
-        int diffX = getX() - charX;
-        int diffY = getY() - charY;
-
-        if(Math.abs(diffX) > Math.abs(diffY)) { // If HallMonitor is further away in the x-direction than the y-direction
-            if(diffX > 0 && (!map.isWall(getX() - 1, getY()) && !map.isWall(getX() - 1, getY() + 44 + 1))) { // HallMonitor is further right than student
-                moveLeft();
-            } else if (diffX < 0 && (!map.isWall(getX() + 1 + 26, getY()) && !map.isWall(getX() + 1 + 26, getY() + 44 + 1))){
-                moveRight();
-            } else {
-                if(diffX > 0 && (!map.isWall(getX() - 1, getY()) && !map.isWall(getX() - 1, getY() + 44 + 1))) { // HallMonitor is further right than student
-                    moveLeft();
-                } else if (diffX < 0 && (!map.isWall(getX() + 1 + 26, getY()) && !map.isWall(getX() + 1 + 26, getY() + 44 + 1))){
-                    moveRight();
-                } else if(diffY > 0 && (!map.isWall(getX(), getY() - 1) && !map.isWall(getX() + 26 + 1, getY() - 1))) { // HallMonitor is further down than student
-                    moveUp();
-                } else if (diffY < 0 && (!map.isWall(getX() + 1 + 44, getY()) && !map.isWall(getX() + 26 + 1, getY() + 1 + 44))){
-                    moveDown();
-                } else {
-                    System.out.println("nice");
-                    direction = Direction.NONE;
-                }
-            }
-        } else {
-            if(diffY > 0 && (!map.isWall(getX(), getY() - 1) && !map.isWall(getX() + 26 + 1, getY() - 1))) { // HallMonitor is further down than student
-                moveUp();
-            } else if (diffY < 0 && (!map.isWall(getX() + 1 + 44, getY()) && !map.isWall(getX() + 26 + 1, getY() + 1 + 44))){
-                moveDown();
-            } else {
-                if(diffX > 0 && (!map.isWall(getX() - 1, getY()) && !map.isWall(getX() - 1, getY() + 44 + 1))) { // HallMonitor is further right than student
-                    moveLeft();
-                } else if (diffX < 0 && (!map.isWall(getX() + 1 + 26, getY()) && !map.isWall(getX() + 1 + 26, getY() + 44 + 1))){
-                    moveRight();
-                } else if(diffY > 0 && (!map.isWall(getX(), getY() - 1) && !map.isWall(getX() + 26 + 1, getY() - 1))) { // HallMonitor is further down than student
-                    moveUp();
-                } else if (diffY < 0 && (!map.isWall(getX() + 1 + 44, getY()) && !map.isWall(getX() + 26 + 1, getY() + 1 + 44))){
-                    moveDown();
-                } else {
-                    System.out.println("nice");
-                    direction = Direction.NONE;
-                }
-            }
-        }
-    }
+    public abstract void move(int x, int y, Map map);
 
     @Override
     public void drawStill(Graphics g) {

@@ -11,7 +11,7 @@ public class HallPass extends Food {
     //here, hasBeenEaten() [from Food] will tell you whether or not the player
     //can eat hall monitors
     
-    private static final String imagePath = "Pass-Man Drawings/pass.png";
+    private static final String imagePath = "graphics/pass.png";
     private static final int pointVal = 100;
     private ImageIcon img = new ImageIcon(imagePath);
     private Image scaled = scaleImage(img.getImage(), 37, 61);
