@@ -16,7 +16,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     private HallMonitor[] enemies;
 
-    private HallPass[] passes;
+    private ArrayList<HallPass> passes;
 
     private ArrayList<Dot> dots;
 
@@ -59,13 +59,11 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemies[2] = new HallMonitor(251,351,2);
         enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
         
-        passes = new HallPass[4];
-
-        passes[0] = new HallPass(101,height - 51 - 44);
-        passes[1] = new HallPass(width - 101 - 26,51);
-        passes[2] = new HallPass(451,201);
-        passes[3] = new HallPass(451,301);
-
+        passes = new ArrayList<HallPass>(4);
+        passes.add(new HallPass(101,height - 51 - 44));
+        passes.add(new HallPass(width - 101 - 26,51));
+        passes.add(new HallPass(451,201));
+        passes.add(new HallPass(451,301));
 
         map = new Map(width, height);
 
@@ -123,10 +121,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemies[2] = new HallMonitor(251,351,2);
         enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
 
-        passes[0] = new HallPass(101,height - 51 - 44);
-        passes[1] = new HallPass(width - 101 - 26,51);
-        passes[2] = new HallPass(451,201);
-        passes[3] = new HallPass(451,301);
+        passes.add(new HallPass(101,height - 51 - 44));
+        passes.add(new HallPass(width - 101 - 26,51));
+        passes.add(new HallPass(451,201));
+        passes.add(new HallPass(451,301));
 
         points = 0;
 
@@ -242,9 +240,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     }
 
     public void updatePass(int x, int y) {
-        for(int i = 0; i < passes.length; i++) {
-            if(passes[i].getX() >= x && passes[i].getX() <= x + 26 && passes[i].getY() >= y && passes[i].getY() <= y + 44) {
-                // remove pass
+        for(int i = 0; i < passes.size(); i++) {
+            if(passes.get(i).getX() >= x && passes.get(i).getX() <= x + 26 && passes.get(i).getY() >= y && passes.get(i).getY() <= y + 44) {
+                passes.remove(i);
                 points += 100;
             }
         }
