@@ -138,7 +138,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         for(int x = 25; x < width - 25 ; x += 50) {
             for(int y = 25; y < height - 25; y += 50) {
                 if(!checkWall(x, y)) {
-                    dots.add(new Dot(x, y));
+                    if (!((x == 275 && y == 275) || (x == 125 && y == 575) || (x == 825 && y == 75) || (x == 475 && y == 275) || (x == 475 && y == 375))) {
+                        dots.add(new Dot(x, y));
+                    }
                 }
             }
         }
