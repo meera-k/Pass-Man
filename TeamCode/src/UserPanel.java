@@ -45,14 +45,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         playerWidth = width / 27;
 
         enemies = new HallMonitor[4];
-
-        // enemies[0] = new HallMonitor(101,51,2);
-        // enemies[1] = new HallMonitor(101,height - 51 - 44,2);
-        // enemies[2] = new HallMonitor(width - 101 - 26,51,2);
-        // enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
-        // enemies[4] = new HallMonitor(451,201,2);
-        // enemies[5] = new HallMonitor(651,251,2);
-        // enemies[6] = new HallMonitor(251,351,2);
+        enemies[0] = new Sharon(101,51,2);
 
         //enemies[0] = new Sharon(101,51,2);
         enemies[0] = new HallMonitor1(101,51,2);
@@ -61,10 +54,10 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         enemies[3] = new Sharon(width - 101 - 26,height - 51 - 44,2);
 
         passes = new ArrayList<HallPass>(4);
-        passes.add(new HallPass(101,height - 51 - 44));
-        passes.add(new HallPass(width - 101 - 26,51));
-        passes.add(new HallPass(451,201));
-        passes.add(new HallPass(451,301));
+        passes.add(new HallPass(125,height - 50 - 25));
+        passes.add(new HallPass(width - 100 - 25,75));
+        passes.add(new HallPass(475,275));
+        passes.add(new HallPass(475,375));
 
         map = new Map(width, height);
 
@@ -72,7 +65,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         for(int x = 25; x < width - 25 ; x += 50) {
             for(int y = 25; y < height - 25; y += 50) {
                 if(!checkWall(x, y)) {
-                    dots.add(new Dot(x, y));
+                    if (!((x == 275 && y == 275) || (x == 125 && y == 575) || (x == 825 && y == 75) || (x == 475 && y == 275) || (x == 475 && y == 375))) {
+                        dots.add(new Dot(x, y));
+                    }
                 }
             }
         }
@@ -108,24 +103,16 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     //intitialize and end are used to restart the game
     public void initializeChars() {
-        
-        // enemies[0] = new HallMonitor(101,51,2);
-        // enemies[1] = new HallMonitor(101,height - 51 - 44,2);
-        // enemies[2] = new HallMonitor(width - 101 - 26,51,2);
-        // enemies[3] = new HallMonitor(width - 101 - 26,height - 51 - 44,2);
-        // enemies[4] = new HallMonitor(451,201,2);
-        // enemies[5] = new HallMonitor(651,251,2);
-        // enemies[6] = new HallMonitor(251,351,2);
 
         enemies[0] = new HallMonitor1(101,51,2);
         enemies[1] = new Sharon(651,251,2);
         enemies[2] = new Sharon(251,351,2);
         enemies[3] = new Sharon(width - 101 - 26,height - 51 - 44,2);
 
-        passes.add(new HallPass(101,height - 51 - 44));
-        passes.add(new HallPass(width - 101 - 26,51));
-        passes.add(new HallPass(451,201));
-        passes.add(new HallPass(451,301));
+        passes.add(new HallPass(125,height - 50 - 25));
+        passes.add(new HallPass(width - 100 - 25,75));
+        passes.add(new HallPass(475,275));
+        passes.add(new HallPass(475,375));
 
         points = 0;
 
@@ -137,7 +124,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         for(int x = 25; x < width - 25 ; x += 50) {
             for(int y = 25; y < height - 25; y += 50) {
                 if(!checkWall(x, y)) {
-                    dots.add(new Dot(x, y));
+                    if (!((x == 275 && y == 275) || (x == 125 && y == 575) || (x == 825 && y == 75) || (x == 475 && y == 275) || (x == 475 && y == 375))) {
+                        dots.add(new Dot(x, y));
+                    }
                 }
             }
         }
@@ -313,6 +302,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         super.paintComponent(g); // a call to JPanel's paintComponent
 
+        ImageIcon bagel = new ImageIcon("graphics/bagel.png");
+        g.drawImage(bagel.getImage(),100,100,null);
+
         map.draw(g);
 
         for (Dot d : dots) {
@@ -321,8 +313,6 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         // Draw heroes
         student.draw(g);
-        ImageIcon bagel = new ImageIcon("graphics/bagel.png");
-        g.drawImage(bagel.getImage(),100,100,null);
 
         // Draw enemies
         for (HallMonitor e : enemies) {
