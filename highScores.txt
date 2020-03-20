@@ -1,1 +1,1 @@
-Current High Score:
+Current High Score: name, 600

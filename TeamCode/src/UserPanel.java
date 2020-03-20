@@ -299,6 +299,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         super.paintComponent(g); // a call to JPanel's paintComponent
 
+        ImageIcon bagel = new ImageIcon("graphics/bagel.png");
+        g.drawImage(bagel.getImage(),100,100,null);
+
         map.draw(g);
 
         for (Dot d : dots) {
@@ -307,8 +310,6 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         // Draw heroes
         student.draw(g);
-        ImageIcon bagel = new ImageIcon("graphics/bagel.png");
-        g.drawImage(bagel.getImage(),100,100,null);
 
         // Draw enemies
         for (HallMonitor e : enemies) {
