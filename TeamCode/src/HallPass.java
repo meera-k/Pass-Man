@@ -25,5 +25,3 @@ public class HallPass extends Food {
     }
 }
 
-
-
