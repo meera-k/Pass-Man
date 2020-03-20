@@ -400,6 +400,11 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
             }
         }
 
+        if (dots.size() == 0) {
+            stopGame();
+            //add game over
+        }
+
         for (HallMonitor e : enemies) {
             if(e.getX() + 13 >= student.getX() && e.getX() + 13 <= student.getX() + 26 && e.getY() + 22 >= student.getY() && e.getY() + 22 <= student.getY() + 44) {
                 if (!power) {
