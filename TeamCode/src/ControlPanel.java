@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.Box;
 import javax.swing.*;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class ControlPanel extends JPanel
         implements ActionListener
 {
@@ -43,6 +46,13 @@ public class ControlPanel extends JPanel
         creditsButton.addActionListener(this);
         add(creditsButton);
 
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                gStats.update(game.getPoints());
+            }
+        }, 0, 10);
     }
 
     // Called when the start button is clicked
