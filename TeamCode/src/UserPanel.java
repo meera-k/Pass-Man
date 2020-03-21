@@ -10,7 +10,8 @@ import javax.sound.sampled.*;
 //UserPanel inherits from JPanel and uses the KeyListener and ActionListener interfaces
 
 public class UserPanel extends JPanel implements KeyListener, ActionListener, JavaArcade {
-    int points, highScore;
+    int points;
+    static int highScore = 0;
     private Student student; // active student
 
     private Timer timer; // controls how often we updated the x, y pos of enemies and how often we
@@ -104,7 +105,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         setPreferredSize(new Dimension(width, height));
         addKeyListener(this);// used for key controls
 
-        highScore = 0;
+        // MK: highScore = 0;
 
     }
 
