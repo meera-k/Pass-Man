@@ -45,9 +45,8 @@ public class GameStats extends JPanel {
     }
 
     public void gameOver(int points) {
-        int hs = Integer.parseInt(highScoreText().substring(highScoreText().indexOf(",")+2));
-        System.out.println(hs);
-        if (points > hs) {
+        int highScoreValue = Integer.parseInt(highScoreText().substring(highScoreText().indexOf(",")+2));
+        if (points > highScoreValue) {
             yourScoreLabel.setForeground(Color.BLUE);
             highScoreLabel.setForeground(Color.BLUE);
             ((UserPanel) (game)).setHighScore(points);

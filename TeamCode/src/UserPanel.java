@@ -10,8 +10,7 @@ import javax.sound.sampled.*;
 //UserPanel inherits from JPanel and uses the KeyListener and ActionListener interfaces
 
 public class UserPanel extends JPanel implements KeyListener, ActionListener, JavaArcade {
-    int points;
-    static int highScore = 0;
+    int points, highScore;
     private Student student; // active student
 
     private Timer timer; // controls how often we updated the x, y pos of enemies and how often we
@@ -33,7 +32,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
     private Direction direction;
 
-    private boolean power;
+    private boolean power, gameOver, lost;
 
     private URL url;  
     private Clip clip;
@@ -87,6 +86,9 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         power = false;
 
+        gameOver = false;
+        lost = true; //if you don't win (collect all dots), then you lose...
+
         // Status check every 50 milliseconds
         timer = new javax.swing.Timer(50, this);
 
@@ -105,7 +107,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         setPreferredSize(new Dimension(width, height));
         addKeyListener(this);// used for key controls
 
-        // MK: highScore = 0;
+        highScore = 0;
 
     }
 
@@ -167,11 +169,20 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         return start;
     }
 
+    public boolean isOver() {
+        return gameOver;
+    }
+
+    public boolean lost() {
+        return lost;
+    }
+
     /* This method should start your game, it should also set a global boolean value so that your running method
      * can return the appropriate value */
 
     public void startGame(boolean start_over) {
         if (start_over) {
+            gameOver = false;
             initializeChars();
             points = 0;
         }
@@ -432,6 +443,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         if (dots.size() == 0) {
             stopGame();
+            gameOver = true;
+            lost = false;
             //add game over
         }
 
@@ -439,6 +452,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
             if(e.getX() + 13 >= student.getX() && e.getX() + 13 <= student.getX() + 26 && e.getY() + 22 >= student.getY() && e.getY() + 22 <= student.getY() + 44) {
                 if (!power) {
                     stopGame();
+                    gameOver = true;
+                    lost = true;
                     //add game over
                 }
             }

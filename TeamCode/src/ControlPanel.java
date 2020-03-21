@@ -19,6 +19,7 @@ public class ControlPanel extends JPanel
     private GameStats gStats;
     private JButton startButton, pauseButton, stopButton, instructionsButton, creditsButton;
     private boolean isStopped = false;
+    private Timer timer;
 
     // Constructor
     public ControlPanel(JavaArcade t, GameStats g)
@@ -45,14 +46,36 @@ public class ControlPanel extends JPanel
         creditsButton = new JButton("Credits");
         creditsButton.addActionListener(this);
         add(creditsButton);
+    }
 
-        Timer timer = new Timer();
+    private void startTimer() {
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 gStats.update(game.getPoints());
+                if (((UserPanel)(game)).isOver()) {
+                    pauseTimer();
+                }
             }
         }, 0, 10);
+
+    }
+
+    private void pauseTimer() {
+        callEndMessage();
+        timer.cancel();
+        
+        isStopped = true;
+        game.stopGame();
+
+        gStats.gameOver(game.getPoints());
+        
+        gStats.repaint();
+        startButton.setEnabled(true);
+        ((UserPanel)(game)).endChars();
+        startButton.setText("Restart");
+        repaint();
     }
 
     // Called when the start button is clicked
@@ -76,7 +99,8 @@ public class ControlPanel extends JPanel
                 gStats.repaint();
                 startButton.setText("Resume");
             }
-
+            
+            startTimer();
         }
         else if(button == pauseButton)
         {
@@ -91,6 +115,8 @@ public class ControlPanel extends JPanel
         {
             isStopped = true;
             game.stopGame();
+            callEndMessage();
+
             gStats.gameOver(game.getPoints());
             gStats.repaint();
             startButton.setEnabled(true);
@@ -100,14 +126,14 @@ public class ControlPanel extends JPanel
         }
         else if(button == creditsButton)
         {
-            private_pause();
+            //private_pause();
             String credits = game.getCredits();
             JOptionPane.showMessageDialog(this, credits, "Game Credits", JOptionPane.PLAIN_MESSAGE);
 
         }
         else if(button == instructionsButton)
         {
-            private_pause();
+            //private_pause();
             String instructions = game.getInstructions();
             JOptionPane.showMessageDialog(this, instructions, "Game Rules", JOptionPane.PLAIN_MESSAGE);
 
@@ -120,6 +146,16 @@ public class ControlPanel extends JPanel
         startButton.setText("Resume");
         startButton.setEnabled(true);
         repaint();
+    }
+
+    private void callEndMessage() {
+        if (((UserPanel)(game)).lost()) {
+            JOptionPane.showMessageDialog(this, "You lost :( \nGood game!", "YOU LOST", JOptionPane.PLAIN_MESSAGE);
+            ((JPanel)(game)).requestFocus();
+        } else {
+            JOptionPane.showMessageDialog(this, "You beat Sharon :) \nGood game!", "YOU WON", JOptionPane.PLAIN_MESSAGE);
+            ((JPanel)(game)).requestFocus();
+        }
     }
 
 }
