@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Current High Score: 
+=======
+Current High Score: name, 540
+>>>>>>> parent of bb1f0b5... remove extra music
 =======
 Current High Score: name, 540
 >>>>>>> parent of bb1f0b5... remove extra music
