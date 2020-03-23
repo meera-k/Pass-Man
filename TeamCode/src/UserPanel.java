@@ -54,9 +54,7 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
 
         enemies = new HallMonitor[4];
         enemies[0] = new Sharon(101,51,2);
-
-        //enemies[0] = new Sharon(101,51,2);
-        enemies[0] = new HallMonitor1(101,51,2);
+        //enemies[0] = new HallMonitor1(101,51,2);
         enemies[1] = new Sharon(651,251,2);
         enemies[2] = new Sharon(251,351,2);
         enemies[3] = new Sharon(width - 101 - 26,height - 51 - 44,2);
@@ -118,7 +116,8 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
     //intitialize and end are used to restart the game
     public void initializeChars() {
 
-        enemies[0] = new HallMonitor1(101,51,2);
+        enemies[0] = new Sharon(101,51,2);
+        //enemies[0] = new HallMonitor1(101,51,2);
         enemies[1] = new Sharon(651,251,2);
         enemies[2] = new Sharon(251,351,2);
         enemies[3] = new Sharon(width - 101 - 26,height - 51 - 44,2);
