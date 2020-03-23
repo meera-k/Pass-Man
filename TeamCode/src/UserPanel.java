@@ -355,7 +355,11 @@ public class UserPanel extends JPanel implements KeyListener, ActionListener, Ja
         ImageIcon bagel = new ImageIcon("graphics/bagel.png");
         g.drawImage(bagel.getImage(),100,100,null);
 
-        map.draw(g);
+        if (power) {
+            map.draw(g, Color.GREEN);
+        } else {
+            map.draw(g, Color.CYAN);
+        }
 
         for (Dot d : dots) {
             d.draw(g);
